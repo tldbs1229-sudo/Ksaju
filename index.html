@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#FAF7F2">
+<script>try{if(localStorage.getItem('yd-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+KR:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <title>윤슬당 YUNSEULDANG · 나의 수호동물</title>
@@ -18,7 +19,63 @@
   --jade:#0F382A;--jade-d:#002217;--jade-l:#c1ecd7;
   --gold:#D4AF37;--goldtxt:#735c00;--red:#B33927;--seal:#93000a;
   --r:2px;--r2:6px;
-  --ink:#1c1c19;--paper:#fff;--purple:#0F382A}
+  --ink:#1c1c19;--paper:#fff;--purple:#0F382A;
+  --el0:#0F382A;--el1:#B33927;--el2:#C5A059;--el3:#717974;--el4:#1c1c19}
+/* ===== Dark mode (MUDANG night: deep indigo · violet · gold) ===== */
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0c0a19;--bg2:#1a1733;--card:#1b1834;--line:rgba(150,130,230,.22);
+  --text:#f3f0ff;--muted:#b6aedb;
+  --jade:#f3f0ff;--jade-d:#1a1206;--jade-l:#2a2550;
+  --gold:#e6c46a;--goldtxt:#f0c96b;--red:#ff8a6b;
+  --ink:#f3f0ff;--paper:#1b1834;--purple:#8b6cf0;
+  --el0:#7ed6a4;--el1:#ff8a6b;--el2:#f0c96b;--el3:#d3d0e6;--el4:#7fb4ff}
+[data-theme="dark"] body{background-color:var(--bg);background-image:radial-gradient(rgba(150,130,230,.07) 1px,transparent 0)}
+[data-theme="dark"] header{background:#0c0a19cc;box-shadow:none}
+[data-theme="dark"] .brand .bn{color:var(--goldtxt)}
+[data-theme="dark"] .brand:hover .bn{color:#fff}
+[data-theme="dark"] .pill{color:var(--text);border-color:var(--line);border-radius:99px}
+[data-theme="dark"] button.pill:hover{background:rgba(139,108,240,.15);border-color:var(--purple)}
+[data-theme="dark"] .btn{background:transparent;color:var(--text);border-color:rgba(150,130,230,.45);border-radius:10px}
+[data-theme="dark"] .btn:hover{border-color:var(--gold)}
+[data-theme="dark"] .btn.primary,[data-theme="dark"] .product .btn{background:linear-gradient(135deg,#f0d27a,#c9a24a);color:#1a1206;border-color:transparent}
+[data-theme="dark"] .btn.primary:hover,[data-theme="dark"] .product .btn:hover{background:linear-gradient(135deg,#f6dc8c,#d4ad55);box-shadow:0 6px 18px -6px rgba(230,196,106,.55)}
+[data-theme="dark"] .room{background:radial-gradient(circle at 50% 30%,#2a2160,#120f26 78%);border-color:var(--line);color:var(--text);box-shadow:0 0 60px -20px rgba(139,108,240,.6)}
+[data-theme="dark"] .room.night{background:radial-gradient(circle at 50% 30%,#1c1748,#07060f 78%)}
+[data-theme="dark"] .room .badge{color:var(--goldtxt)}
+[data-theme="dark"] .ti{background:rgba(255,255,255,.05);border-color:var(--line);color:var(--muted)}
+[data-theme="dark"] .ti.on{background:rgba(230,196,106,.15);color:var(--goldtxt)}
+[data-theme="dark"] .meter{background:rgba(150,130,230,.2)}
+[data-theme="dark"] .meter i{background:linear-gradient(90deg,var(--purple),var(--gold))}
+[data-theme="dark"] .hero h1{color:#fff;font-weight:700}
+[data-theme="dark"] .hero h1 em{font-style:normal;background:linear-gradient(90deg,#f0c96b,#f08a5d);-webkit-background-clip:text;background-clip:text;color:transparent}
+[data-theme="dark"] .hero .tag{color:var(--goldtxt)}
+[data-theme="dark"] h3,[data-theme="dark"] h4{color:#fff}
+[data-theme="dark"] .tabs button.on{color:#fff;border-bottom-color:var(--gold)}
+[data-theme="dark"] .card{background:var(--card);border-color:var(--line);border-radius:14px;box-shadow:none}
+[data-theme="dark"] label{color:var(--muted)}
+[data-theme="dark"] input,[data-theme="dark"] select,[data-theme="dark"] textarea{background:#110f24;border-color:var(--line);border-radius:10px;color:var(--text)}
+[data-theme="dark"] input:focus,[data-theme="dark"] select:focus,[data-theme="dark"] textarea:focus{outline-color:rgba(139,108,240,.6);border-color:var(--purple)}
+[data-theme="dark"] .bubble{border-color:var(--line)}
+[data-theme="dark"] .bubble.user{background:linear-gradient(135deg,#6d4fe0,#8b6cf0);color:#fff}
+[data-theme="dark"] .chips button{background:transparent;border-color:var(--line);color:var(--muted)}
+[data-theme="dark"] .chips button:hover{color:#fff}
+[data-theme="dark"] .tarot{background:linear-gradient(160deg,#2a2358,#14112b);border-color:var(--gold);color:#fff;outline-color:rgba(230,196,106,.35);box-shadow:0 10px 30px -10px rgba(139,108,240,.6)}
+[data-theme="dark"] .score{color:var(--goldtxt)}
+[data-theme="dark"] .bar u{background:linear-gradient(90deg,var(--purple),#b9a3ff)}
+[data-theme="dark"] .pil.me{background:rgba(230,196,106,.1)}
+[data-theme="dark"] .shop-art .badge{background:#0c0a19e6;color:var(--text)}
+[data-theme="dark"] .price{color:var(--goldtxt)}
+[data-theme="dark"] .filters button{background:transparent;border-color:var(--line);border-radius:99px;color:var(--text)}
+[data-theme="dark"] .filters button.on{background:var(--gold);color:#1a1206;border-color:var(--gold)}
+[data-theme="dark"] .product.rec{border-color:var(--gold)}
+[data-theme="dark"] .empty{background:rgba(27,24,52,.6);border-color:var(--line)}
+[data-theme="dark"] .foot{background:#08070f;color:var(--muted);border-top:1px solid var(--line)}
+[data-theme="dark"] .foot .brand .bn{color:var(--goldtxt)}[data-theme="dark"] .foot small,[data-theme="dark"] .foot .notice{color:var(--muted)}
+[data-theme="dark"] dialog{border-color:var(--line);border-radius:14px}
+[data-theme="dark"] dialog::backdrop{background:rgba(5,4,12,.7)}
+[data-theme="dark"] #drawer{border-left-color:var(--line)}
+[data-theme="dark"] #toast{background:var(--card);color:var(--text)}
+#themeBtn{min-width:34px}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background-color:var(--bg);background-image:radial-gradient(rgba(15,56,42,.045) 1px,transparent 0);background-size:24px 24px;color:var(--text);font:15px/1.65 "Plus Jakarta Sans","Noto Sans KR","Malgun Gothic",system-ui,sans-serif}
@@ -181,6 +238,7 @@ dialog .close{float:right;border:0;background:var(--bg2);border-radius:50%;width
     <a href="#" class="brand"><span class="bn">윤슬당</span><span class="bs">YUNSEULDANG · 오행 수호동물</span></a>
     <span style="flex:1"></span>
     <span class="pill" id="wallet"></span>
+    <button class="pill" id="themeBtn" aria-label="theme">🌙</button>
     <button class="pill" id="langBtn">EN</button>
     <button class="pill" id="cartBtn">🛒 <b id="cartN">0</b></button>
   </div>
@@ -752,6 +810,13 @@ function fillSelects(){
   if(b.mbti)$('mbti').value=b.mbti;if(b.el)$('element').value=b.el;if(b.tone)$('tone').value=b.tone;if(b.sky)$('sky').value=b.sky;
   if(b.pm)$('partnerMbti').value=b.pm;if(b.pr)$('preset').value=b.pr;if(b.mood)$('mood').value=b.mood;if(b.z)$('zPick').value=b.z;
 }
+function applyTheme(){const dk=document.documentElement.dataset.theme==='dark';
+  $('themeBtn').textContent=dk?'☀️':'🌙';$('themeBtn').title=lang==='ko'?(dk?'화이트모드':'다크모드'):(dk?'Light mode':'Dark mode');
+  document.querySelector('meta[name=theme-color]').content=dk?'#0c0a19':'#FAF7F2'}
+$('themeBtn').onclick=()=>{const dk=document.documentElement.dataset.theme!=='dark';
+  if(dk)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;
+  try{localStorage.setItem('yd-theme',dk?'dark':'light')}catch(e){}applyTheme()};
+applyTheme();
 $('langBtn').onclick=()=>{lang=lang==='ko'?'en':'ko';try{localStorage.setItem('yd-lang',lang)}catch(e){}applyLang()};
 
 /* ================= RENDER ================= */
@@ -831,9 +896,9 @@ function renderChart(){
   $('pillars').innerHTML=cols.map(([k,x],i)=>{
     if(!x)return `<div class="pil"><small>${names[i]}</small><div class="h">?</div><small>${T('unknown')}</small></div>`;
     const st=STEM[x[0]],br=BR[x[1]];
-    return `<div class="pil ${k==='day'?'me':''}"><small>${names[i]}</small><div class="h" style="color:${EL[st[2]].d}">${st[1]}</div><div class="h" style="color:${EL[br[2]].d}">${br[1]}</div><small>${lang==='ko'?st[0]+br[0]:STEMEN[x[0]].split(' ')[1]+' '+AN[x[1]].en}</small></div>`}).join('');
+    return `<div class="pil ${k==='day'?'me':''}"><small>${names[i]}</small><div class="h" style="color:var(--el${st[2]})">${st[1]}</div><div class="h" style="color:var(--el${br[2]})">${br[1]}</div><small>${lang==='ko'?st[0]+br[0]:STEMEN[x[0]].split(' ')[1]+' '+AN[x[1]].en}</small></div>`}).join('');
   const mx=Math.max(...s.cnt,1);
-  $('els').innerHTML=EL.map((e,i)=>`<div class="bar"><i>${e.em} ${L(e)}</i><div><u style="width:${s.cnt[i]/mx*100}%;background:${e.d}"></u></div><b>${s.cnt[i]}</b></div>`).join('');
+  $('els').innerHTML=EL.map((e,i)=>`<div class="bar"><i>${e.em} ${L(e)}</i><div><u style="width:${s.cnt[i]/mx*100}%;background:var(--el${i})"></u></div><b>${s.cnt[i]}</b></div>`).join('');
   const dm=STEM[s.p.day[0]];
   const dmN=lang==='ko'?`${dm[0]}(${dm[1]}) · ${elName(dm[2])}`:STEMEN[s.p.day[0]];
   const th=EL[p.element];
