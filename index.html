@@ -174,6 +174,49 @@ button.pill:hover{border-color:var(--gold);background:#fff}
 .room.night .btn.primary{background:var(--gold);color:var(--jade-d);border-color:var(--gold)}
 .mini{display:flex;gap:8px;justify-content:center;margin-top:12px}
 /* hero text */
+/* ===== landing: gingham hero + pet device + product cards ===== */
+.lhero{position:relative;text-align:center;padding:44px 16px 64px;overflow:hidden;
+  background-color:#f3e2c9;
+  background-image:repeating-linear-gradient(0deg,rgba(201,146,96,.32) 0 22px,transparent 22px 44px),repeating-linear-gradient(90deg,rgba(201,146,96,.32) 0 22px,transparent 22px 44px),repeating-linear-gradient(0deg,transparent 0 10px,rgba(255,255,255,.35) 10px 12px,transparent 12px 22px),repeating-linear-gradient(90deg,transparent 0 10px,rgba(255,255,255,.35) 10px 12px,transparent 12px 22px)}
+.lh-title{font-family:"Noto Sans KR",sans-serif;font-size:clamp(22px,4.2vw,34px);font-weight:700;color:#3a2a1c;margin:0 0 22px;letter-spacing:-.01em}
+.lh-cap{margin-top:18px;font-size:14px;font-weight:600;color:#3a2a1c}
+.lh-cap:before{content:"⬆";display:block;font-size:16px;margin-bottom:4px}
+.logintab{position:absolute;right:0;top:50%;transform:translateY(-50%);background:#f2c14e;color:#2a1d0c;border:0;border-radius:10px 0 0 10px;padding:16px 14px;font-weight:700;font-size:15px;box-shadow:0 4px 14px -6px rgba(0,0,0,.35);z-index:2}
+.logintab:hover{background:#f6cd63}
+.device{position:relative;width:min(340px,82vw);margin:0 auto;padding:62px 28px 26px;border-radius:44px;
+  background:linear-gradient(160deg,#1f5a43,#0F382A 70%);border:4px solid #d4af37;box-shadow:0 18px 40px -14px rgba(15,56,42,.55),inset 0 0 0 6px rgba(255,255,255,.06)}
+.dv-top{position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:#B33927;color:#fff3d6;border:3px solid #d4af37;border-radius:18px;padding:6px 18px 4px;white-space:nowrap;box-shadow:0 6px 14px -6px rgba(0,0,0,.4)}
+.dv-top span{display:block;font-family:"Noto Serif KR",serif;font-weight:700;font-size:17px;letter-spacing:.06em}
+.dv-top small{display:block;font-size:9px;letter-spacing:.24em;color:#ffd9a0}
+.dv-deco{position:absolute;font-size:24px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
+.dv-deco.d1{top:22px;left:14px}.dv-deco.d2{top:22px;right:14px}.dv-deco.d3{bottom:22px;left:16px}.dv-deco.d4{bottom:22px;right:16px}
+.dv-screen{position:relative;aspect-ratio:368/286;border-radius:18px;overflow:hidden;border:5px solid #f6e7c4;background:#f6f0e4;box-shadow:inset 0 0 0 2px rgba(0,0,0,.08)}
+.dv-screen img{width:100%;height:100%;object-fit:contain;display:block;transition:opacity .35s}
+.dv-screen.off{background:#4a4a52;background-image:linear-gradient(45deg,#55555d 25%,transparent 25%,transparent 75%,#55555d 75%),linear-gradient(45deg,#55555d 25%,transparent 25%,transparent 75%,#55555d 75%);background-size:36px 36px;background-position:0 0,18px 18px}
+.dv-screen.off img{opacity:.92;mix-blend-mode:normal}
+.dv-screen.off:after{content:"?";position:absolute;top:8px;right:12px;font:700 22px "Noto Sans KR",sans-serif;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.dv-bubble{position:absolute;left:8px;right:8px;bottom:8px;background:rgba(255,255,255,.94);color:#2a1d0c;border-radius:12px;padding:6px 10px;font-size:12px;font-weight:600;line-height:1.4}
+.dv-btn{display:block;margin:18px auto 0;width:62px;height:62px;border-radius:50%;border:4px solid #d4af37;background:radial-gradient(circle at 40% 35%,#e66a5a,#B33927 70%);color:#fff3d6;font:700 22px "Noto Serif KR",serif;box-shadow:0 6px 0 #7a1f14,0 10px 18px -6px rgba(0,0,0,.5);transition:transform .1s,box-shadow .1s}
+.dv-screen.pop{animation:pop .45s}
+.dv-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #7a1f14}
+.lsheet{position:relative;margin-top:-28px;background:var(--bg);border-radius:28px 28px 0 0;padding:26px 0 30px;box-shadow:0 -6px 18px -12px rgba(0,0,0,.25)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pcard{text-align:left;border:0;border-radius:26px;padding:16px 16px 18px;background:var(--pc);color:#2a1d0c;transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column}
+.pcard:hover{transform:translateY(-3px);box-shadow:0 12px 24px -14px rgba(0,0,0,.35)}
+.pcard .pimg{aspect-ratio:1;width:100%;object-fit:cover;display:block;background:#f6f0e4}
+.pcard .pimg.sq{border-radius:22%}.pcard .pimg.ci{border-radius:50%}
+.pcard .pimg.heart{clip-path:url(#cp-heart)}.pcard .pimg.ears{clip-path:url(#cp-ears)}.pcard .pimg.star{clip-path:url(#cp-star)}.pcard .pimg.flower{clip-path:url(#cp-flower)}
+.pcard .prow{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px}
+.pcard b{font-size:19px;font-family:"Noto Sans KR",sans-serif;letter-spacing:-.02em}
+.pcard .pbadge{background:#fff;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700;white-space:nowrap;color:#2a1d0c}
+.pcard small{color:#6b5a4a;font-size:13px;margin-top:4px}
+[data-theme="dark"] .lhero{background-color:#14112b;background-image:repeating-linear-gradient(0deg,rgba(139,108,240,.22) 0 22px,transparent 22px 44px),repeating-linear-gradient(90deg,rgba(139,108,240,.22) 0 22px,transparent 22px 44px),repeating-linear-gradient(0deg,transparent 0 10px,rgba(230,196,106,.12) 10px 12px,transparent 12px 22px),repeating-linear-gradient(90deg,transparent 0 10px,rgba(230,196,106,.12) 10px 12px,transparent 12px 22px)}
+[data-theme="dark"] .lh-title,[data-theme="dark"] .lh-cap{color:#fff}
+[data-theme="dark"] .device{background:linear-gradient(160deg,#2a2160,#120f26 70%);border-color:#e6c46a;box-shadow:0 0 60px -16px rgba(139,108,240,.7)}
+[data-theme="dark"] .pcard{background:color-mix(in srgb,var(--pc) 16%,#1b1834);color:var(--text)}
+[data-theme="dark"] .pcard small{color:var(--muted)}
+[data-theme="dark"] .pcard .pbadge{background:rgba(255,255,255,.1);color:var(--goldtxt)}
+@media(max-width:860px){.pgrid{grid-template-columns:repeat(2,1fr);gap:12px}.pcard{padding:12px 12px 14px;border-radius:22px}.pcard b{font-size:16px}.pcard small{font-size:12px}.lhero{padding:36px 12px 56px}.logintab{top:auto;bottom:40px;transform:none;padding:12px 12px;font-size:14px}}
 .hero{padding:6px 0 4px}
 .hero .tag{color:var(--goldtxt);letter-spacing:.28em;font-size:11px;font-weight:600}
 .hero h1{font-size:clamp(30px,4.6vw,50px);margin:10px 0;line-height:1.25;font-weight:500;color:var(--jade)}
@@ -283,6 +326,33 @@ dialog .close{float:right;border:0;background:var(--bg2);border-radius:50%;width
   </div>
 </header>
 
+<!-- LANDING: pet device + product cards -->
+<section class="landing" id="landing">
+  <div class="lhero">
+    <button type="button" class="logintab" id="loginTab" onclick="openBirth()"></button>
+    <h1 class="lh-title" id="lhTitle"></h1>
+    <div class="device" id="device">
+      <div class="dv-top"><span>✦ 윤슬 수호기 ✦</span><small>YUNSEUL GUARDIAN</small></div>
+      <span class="dv-deco d1">🏮</span><span class="dv-deco d2">🌸</span><span class="dv-deco d3">🪷</span><span class="dv-deco d4">🎐</span>
+      <div class="dv-screen" id="dvScreen"><img id="dvImg" alt=""><span class="dv-bubble" id="dvBubble" hidden></span></div>
+      <button type="button" class="dv-btn" id="dvBtn" aria-label="pet"><span>福</span></button>
+    </div>
+    <p class="lh-cap" id="lhCap"></p>
+  </div>
+  <div class="lsheet">
+    <div class="wrap">
+      <div class="pgrid" id="pgrid"></div>
+      <p class="notice center" style="margin-top:16px" data-i18n-html="h_note"></p>
+    </div>
+  </div>
+</section>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <clipPath id="cp-heart" clipPathUnits="objectBoundingBox"><path d="M.5 .96C.17 .74 0 .54 0 .32 0 .14 .14 0 .3 0 .4 0 .47 .05 .5 .13 .53 .05 .6 0 .7 0 .86 0 1 .14 1 .32 1 .54 .83 .74 .5 .96Z"/></clipPath>
+  <clipPath id="cp-ears" clipPathUnits="objectBoundingBox"><path d="M.1 .36C.06 .1 .18 0 .29 .02 .4 .04 .44 .17 .5 .17 .56 .17 .6 .04 .71 .02 .82 0 .94 .1 .9 .36 .98 .46 1 .58 1 .7 1 .9 .82 1 .5 1 .18 1 0 .9 0 .7 0 .58 .02 .46 .1 .36Z"/></clipPath>
+  <clipPath id="cp-star" clipPathUnits="objectBoundingBox"><path d="M.5 .02C.56 .02 .6 .2 .66 .3 .72 .38 .95 .34 .98 .42 1 .5 .82 .62 .8 .7 .78 .8 .88 .96 .8 1 .72 1.03 .58 .88 .5 .88 .42 .88 .28 1.03 .2 1 .12 .96 .22 .8 .2 .7 .18 .62 0 .5 .02 .42 .05 .34 .28 .38 .34 .3 .4 .2 .44 .02 .5 .02Z"/></clipPath>
+  <clipPath id="cp-flower" clipPathUnits="objectBoundingBox"><path d="M.23 .27A.27 .27 0 1 0 .77 .27A.27 .27 0 1 0 .23 .27ZM.46 .5A.27 .27 0 1 0 1 .5A.27 .27 0 1 0 .46 .5ZM.23 .73A.27 .27 0 1 0 .77 .73A.27 .27 0 1 0 .23 .73ZM0 .5A.27 .27 0 1 0 .54 .5A.27 .27 0 1 0 0 .5ZM.2 .5A.3 .3 0 1 0 .8 .5A.3 .3 0 1 0 .2 .5Z"/></clipPath>
+</svg>
+
 <main class="wrap">
  <div class="studio">
   <!-- LEFT: character + try-on tray (always visible) -->
@@ -310,13 +380,7 @@ dialog .close{float:right;border:0;background:var(--bg2);border-radius:50%;width
   <div class="right">
     <div class="hero">
       <div class="tag">AI · K-FORTUNE · SHAMANISM</div>
-      <h1 data-i18n-html="h_title"></h1>
       <p class="lead" data-i18n-html="h_lead"></p>
-      <div class="actions">
-        <button class="btn primary" onclick="openBirth()" data-i18n="h_cta1"></button>
-        <button class="btn" onclick="goTab('chart')" data-i18n="h_cta2"></button>
-      </div>
-      <p class="notice" style="margin-top:12px" data-i18n-html="h_note"></p>
     </div>
 
     <div class="tabs" id="tabs" role="tablist">
@@ -680,6 +744,9 @@ hu_on:'🧑 의인화 보기',hu_off:'🐾 펫 모습 보기',hu_unlock:'✨ {p}
 hu_role:'{g}네 농장의 막내 일꾼',pet_trait:'성격',pet_look:'모습',pet_job:'농장에서',
 preview:'미리보기',
 chips_g:['오늘 뭐 했어?','친구들 소개해줘','내 사주 설명해줘','펫은 잘 지내?','오늘은 조금 지쳤어','용기가 필요해'],
+lh_out:'내 운세를 보려면 로그인하라냥!',lh_in:'오늘의 운세, 골라보라냥!',lh_cap_out:'생년월일로 로그인하면 내 펫이 깨어난다냥',lh_cap_in:'{g}네 농장 · {label} \'{n}\' · Lv.{lv}',
+login:'로그인',me:'내 정보',dv_guess:'누가 나올까? 🐾',
+dv_lines:['오늘의 타로 뽑으러 갈래?','농장에 새 식구가 기다리고 있어!','오늘 하루도 수고했어.','별가루 모아서 레벨업하자!','궁합 보러 가볼까?'],
 ai_on:'AI 연결됨',ai_off:'규칙형 데모'
 },
 en:{
@@ -778,6 +845,9 @@ hu_on:'🧑 Human form',hu_off:'🐾 Pet form',hu_unlock:'✨ {p} can now take h
 hu_role:'the youngest helper on {g}\'s farm',pet_trait:'Personality',pet_look:'Look',pet_job:'On the farm',
 preview:'Preview',
 chips_g:['What did you do today?','Introduce your friends','Explain my Saju','How is my pet?','I\'m a bit tired today','I need courage'],
+lh_out:'Log in to see your fortune, meow!',lh_in:'Pick today\'s fortune, meow!',lh_cap_out:'Log in with your birth date to wake up your pet',lh_cap_in:'{g}\'s farm · {label} "{n}" · Lv.{lv}',
+login:'Log in',me:'My info',dv_guess:'Who will it be? 🐾',
+dv_lines:['Want to draw today\'s tarot?','A new farm resident is waiting!','You did great today.','Collect stardust and level up!','Shall we check our chemistry?'],
 ai_on:'AI connected',ai_off:'Rule-based demo'
 }};
 let lang=(navigator.language||'').startsWith('ko')?'ko':'en';
@@ -1006,10 +1076,53 @@ function render(){
   const has=!!state.pet;
   $('welcome').hidden=has;$('mySpace').hidden=!has;$('chartEmpty').hidden=has;$('chartBox').hidden=!has;
   $('guideEmpty').hidden=has;$('guideBox').hidden=!has;$('farmEmpty').hidden=has;$('farmBox').hidden=!has;
-  renderPet();
+  renderPet();renderLanding();
   if(has){renderChart();renderGuide();renderFarm()}
   renderChat();renderRitual();renderShop();renderMatch();renderJournal();renderCart();
 }
+/* ---- landing: pet device + product cards ---- */
+const PRODUCTS=[
+{k:'chart',img:'img/pets/water-dragon.jpg',sh:'sq',c:'#fbf3c4',need:1,t:{ko:'내 사주 풀이',en:'My Saju'},s:{ko:'네 기둥과 오행으로 보는 나',en:'Four pillars & five elements'},b:{ko:'무료',en:'Free'}},
+{k:'match',img:'img/pets/fire-rabbit.jpg',sh:'heart',c:'#fde4ec',need:1,t:{ko:'인연 궁합',en:'Chemistry'},s:{ko:'우리 사이는 몇 점?',en:'How well do we match?'},b:{ko:'무료',en:'Free'}},
+{k:'today',img:'img/pets/metal-monkey.jpg',sh:'ears',c:'#e3f2c6',need:0,t:{ko:'오늘의 타로',en:'Daily tarot'},s:{ko:'하루 한 장, 오늘의 질문',en:'One card, one question a day'},b:{ko:'하루 1장',en:'1 / day'}},
+{k:'chat',img:'img/human/wood-rabbit.jpg',sh:'star',pos:'50% 18%',c:'#d6ecfb',need:1,t:{ko:'가이드와 대화',en:'Chat with guide'},s:{ko:'일상이 있는 가이드가 사주를 읽어줘',en:'A guide with a life reads your Saju'},b:{ko:'NEW',en:'NEW'}},
+{k:'farm',img:'img/pets/wood-sheep.jpg',sh:'flower',c:'#e8e2fd',need:1,t:{ko:'동물농장',en:'Animal Farm'},s:{ko:'레벨업하면 펫이 사람 모습으로!',en:'Level up and your pet takes human form!'},b:{ko:'Lv.UP',en:'Lv.UP'}},
+{k:'shop',img:'img/pets/earth-pig.jpg',sh:'ci',c:'#fde3cc',need:0,t:{ko:'오행 공방',en:'Element Workshop'},s:{ko:'부족한 기운을 채우는 소품',en:'Charms for the energy you lack'},b:{ko:'✦ 추천',en:'✦ Picks'}}];
+let pendingTab=null,dvTimer=null,dvIdx=0;
+function goProduct(k){
+  const pr=PRODUCTS.find(x=>x.k===k);
+  if(pr.need&&!state.pet){pendingTab=k;openBirth();return}
+  goTab(k);$('tabs').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderLanding(){
+  const p=state.pet,has=!!p;
+  $('lhTitle').textContent=has?T('lh_in'):T('lh_out');
+  $('loginTab').textContent=has?T('me'):T('login');
+  $('dvScreen').classList.toggle('off',!has);
+  clearInterval(dvTimer);
+  if(has){
+    $('dvImg').src=humanOn()?humanSrc(p.animal,p.petEl):petSrc(p.animal,p.petEl);$('dvImg').alt=animalLabel(p);
+    $('lhCap').textContent=fmt(T('lh_cap_in'),{g:L(guideOf(p).n),label:animalLabel(p),n:p.name,lv:lvOf()+1});
+    $('dvBubble').hidden=true;
+  }else{   // logged out: cycle preview pets so the device is never empty
+    const show=()=>{const h=hash('dv'+dvIdx++);$('dvImg').src=petSrc(h%12,(h>>>4)%5)};
+    show();dvTimer=setInterval(show,2400);
+    $('lhCap').textContent=T('lh_cap_out');
+    $('dvBubble').textContent=T('dv_guess');$('dvBubble').hidden=false;
+  }
+  const mine=has?petSrc(p.animal,p.petEl):null;
+  $('pgrid').innerHTML=PRODUCTS.map(x=>{const src=x.k==='farm'&&mine?mine:x.img;
+    return `<button type="button" class="pcard" style="--pc:${x.c}" data-k="${x.k}"><img class="pimg ${x.sh}" src="${src}" alt="" loading="lazy"${x.pos?` style="object-position:${x.pos}"`:''}><span class="prow"><b>${esc(L(x.t))}</b><span class="pbadge">${esc(L(x.b))}</span></span><small>${esc(L(x.s))}</small></button>`}).join('');
+  $('pgrid').querySelectorAll('.pcard').forEach(b=>b.onclick=()=>goProduct(b.dataset.k));
+}
+$('birthDialog').addEventListener('close',()=>{pendingTab=null});
+$('dvBtn').onclick=()=>{
+  if(!state.pet)return openBirth();
+  const p=state.pet,l=T('dv_lines'),h=hash(today()+Date.now());
+  $('dvBubble').textContent=`${p.name}: ${L(AN[p.animal].sig)} ${l[h%l.length]}`;$('dvBubble').hidden=false;
+  const s=$('dvScreen');s.classList.remove('pop');void s.offsetWidth;s.classList.add('pop');
+  clearTimeout($('dvBtn')._t);$('dvBtn')._t=setTimeout(()=>$('dvBubble').hidden=true,3200);
+};
 /* ---- live character panel (always visible) ---- */
 let preview={};            // slot -> item id being tried on (not saved)
 const DEMO={animal:4,element:1,petEl:4,guide:4,yang:true,sky:'✧'};
@@ -1213,7 +1326,10 @@ $('birthForm').onsubmit=e=>{
   const changed=!prev||prev.guide!==state.pet.guide||prev.animal!==state.pet.animal||prev.petEl!==state.pet.petEl;
   if(!state.chats.length||first||changed){state.chats=[{role:'guide',text:greet()}];state.mem=null}
   track('done');save();render();
-  $('birthDialog').close();goTab(first?'guide':'chat');toast(T('started'));
+  $('birthDialog').close();
+  if(pendingTab){goTab(pendingTab);pendingTab=null;$('tabs').scrollIntoView({behavior:'smooth',block:'start'})}
+  else goTab(first?'guide':'chat');
+  toast(T('started'));
 };
 function greet(){
   const p=state.pet,g=guideOf(p),dm=STEM[p.saju.p.day[0]],top=EL[p.petEl];
