@@ -183,62 +183,89 @@ button.pill:hover{border-color:var(--gold);background:#fff}
 .lh-cap:before{content:"⬆";display:block;font-size:16px;margin-bottom:4px}
 .logintab{position:absolute;right:0;top:50%;transform:translateY(-50%);background:#f2c14e;color:#2a1d0c;border:0;border-radius:10px 0 0 10px;padding:16px 14px;font-weight:700;font-size:15px;box-shadow:0 4px 14px -6px rgba(0,0,0,.35);z-index:2}
 .logintab:hover{background:#f6cd63}
-.device{position:relative;width:min(340px,82vw);margin:0 auto;padding:62px 28px 26px;border-radius:44px;
-  background:linear-gradient(160deg,#1f5a43,#0F382A 70%);border:4px solid #d4af37;box-shadow:0 18px 40px -14px rgba(15,56,42,.55),inset 0 0 0 6px rgba(255,255,255,.06)}
-.dv-top{position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:#B33927;color:#fff3d6;border:3px solid #d4af37;border-radius:18px;padding:6px 18px 4px;white-space:nowrap;box-shadow:0 6px 14px -6px rgba(0,0,0,.4)}
-.dv-top span{display:block;font-family:"Noto Serif KR",serif;font-weight:700;font-size:17px;letter-spacing:.06em}
-.dv-top small{display:block;font-size:9px;letter-spacing:.24em;color:#ffd9a0}
-/* claw machine (flash-game style) */
-.device:before{content:"";position:absolute;inset:8px;border-radius:36px;pointer-events:none;
-  background:radial-gradient(circle,#ffe58a 0 3px,transparent 4px) 0 0/22px 22px;-webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);padding:6px;animation:bulbs 1.1s steps(2) infinite}
-@keyframes bulbs{50%{background-position:11px 0;filter:hue-rotate(40deg) brightness(1.3)}}
-.dv-screen{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;border:5px solid #f6e7c4;
-  background:linear-gradient(#fff9ee,#fde9d2 62%,#f6d6b4);box-shadow:inset 0 0 0 2px rgba(0,0,0,.08),inset 0 -30px 40px -20px rgba(180,110,60,.35)}
-.glass{position:absolute;inset:0;pointer-events:none;z-index:6;background:linear-gradient(115deg,rgba(255,255,255,.45) 0 8%,transparent 8% 14%,rgba(255,255,255,.25) 14% 17%,transparent 17%)}
-.rail{position:absolute;top:10px;left:6%;right:6%;height:6px;border-radius:3px;background:linear-gradient(#c9ced6,#8a919c);box-shadow:0 2px 3px rgba(0,0,0,.2);z-index:4}
-.claw{position:absolute;top:10px;left:50%;width:64px;margin-left:-32px;z-index:5;animation:roam 4.6s ease-in-out infinite alternate}
-@keyframes roam{0%{left:16%}100%{left:84%}}
-.rope{display:block;width:3px;height:22px;margin:0 auto;background:repeating-linear-gradient(#9aa1ab 0 3px,#cfd4da 3px 6px);transition:height .75s cubic-bezier(.5,0,.5,1)}
-.head{position:relative;width:34px;height:15px;margin:0 auto;border-radius:8px 8px 4px 4px;background:linear-gradient(#ffe08a,#d4a020);border:2px solid #9a6a10}
-.head:before{content:"";position:absolute;left:50%;top:-6px;width:10px;height:8px;margin-left:-5px;border-radius:3px;background:#b9bfc8}
-.pl,.pr{position:absolute;top:10px;width:5px;height:28px;border-radius:3px;background:linear-gradient(90deg,#c9ced6,#7d848f);transform-origin:50% 0;transition:transform .3s}
-.pl{left:1px;transform:rotate(32deg)}.pr{right:1px;transform:rotate(-32deg)}
-.pl:after,.pr:after{content:"";position:absolute;bottom:-2px;width:10px;height:5px;border-radius:3px;background:#7d848f}
-.pl:after{left:0}.pr:after{right:0}
-.claw.closed .pl{transform:rotate(8deg)}.claw.closed .pr{transform:rotate(-8deg)}
-.grab{position:absolute;left:50%;top:22px;transform:translateX(-50%);z-index:-1}
+/* ===== claw machine cabinet (pastel holo, after the arcade references) ===== */
+.device{position:relative;width:min(360px,88vw);margin:0 auto;padding:14px 14px 12px;border-radius:30px;
+  background:linear-gradient(135deg,#ffb8dc,#ffe9a8 28%,#a8f0dc 52%,#a9d4ff 74%,#d3b8ff);
+  box-shadow:0 22px 40px -16px rgba(80,40,120,.55),inset 0 0 0 3px rgba(255,255,255,.7),inset 0 0 0 6px rgba(120,80,180,.25)}
+.device:after{content:"";position:absolute;inset:0;border-radius:30px;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.45) 45%,transparent 60%);background-size:250% 100%;animation:holo 5s linear infinite}
+@keyframes holo{from{background-position:120% 0}to{background-position:-120% 0}}
+.dv-top{position:relative;display:flex;justify-content:center;align-items:center;gap:8px;height:30px;margin:0 0 10px;border-radius:12px;background:#2b2350;box-shadow:inset 0 2px 6px rgba(0,0,0,.4)}
+.dv-top span{font:900 15px "Noto Sans KR",sans-serif;letter-spacing:.12em;background:linear-gradient(90deg,#ffb8dc,#fff3a8,#a8f0dc,#a9d4ff,#ffb8dc);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:holo 4s linear infinite}
+.dv-top i{font-style:normal;color:#fff3a8;animation:blink 1s steps(2) infinite}.dv-top i+span+i{animation-delay:.5s}
+@keyframes blink{50%{opacity:.2}}
+/* the glass box */
+.dv-screen{position:relative;aspect-ratio:3/4;border-radius:22px;overflow:hidden;border:4px solid #fff;
+  background:radial-gradient(120% 70% at 50% 0,#3a3170,#1d1838 70%);box-shadow:inset 0 0 0 3px rgba(120,80,180,.35),inset 0 -40px 50px -30px rgba(0,0,0,.6)}
+.glass{position:absolute;inset:0;pointer-events:none;z-index:6;background:linear-gradient(115deg,rgba(255,255,255,.28) 0 7%,transparent 7% 12%,rgba(255,255,255,.14) 12% 15%,transparent 15%)}
+.spot{position:absolute;top:0;width:34%;height:62%;pointer-events:none;z-index:1;clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);opacity:.38;transform-origin:50% 0;animation:sweep 6s ease-in-out infinite alternate}
+.spot.s1{left:14%;background:linear-gradient(#fff3a8,transparent)}.spot.s2{right:14%;background:linear-gradient(#7ff0dc,transparent);animation-delay:-3s}
+@keyframes sweep{from{transform:rotate(-12deg)}to{transform:rotate(12deg)}}
+.rail{position:absolute;left:4%;right:4%;height:5px;border-radius:3px;background:linear-gradient(#eef1f5,#9aa2ad);box-shadow:0 2px 3px rgba(0,0,0,.35);z-index:4}
+.rail.r1{top:12px}.rail.r2{top:24px}
+/* carriage + cable + 3-prong claw */
+.claw{position:absolute;top:6px;left:50%;width:70px;margin-left:-35px;z-index:5;animation:roam 5.5s ease-in-out infinite alternate}
+@keyframes roam{0%{left:34%}100%{left:86%}}
+.cart{display:block;width:44px;height:24px;margin:0 auto;border-radius:6px;background:linear-gradient(#f4f6f9,#a8b0bb);border:2px solid #6f7783;box-shadow:0 3px 4px rgba(0,0,0,.35)}
+.cart:after{content:"";display:block;width:24px;height:6px;margin:7px auto 0;border-radius:3px;background:repeating-linear-gradient(90deg,#6f7783 0 3px,transparent 3px 6px)}
+.rope{display:block;width:4px;height:26px;margin:0 auto;background:repeating-linear-gradient(#ffb8dc 0 5px,#d3b8ff 5px 10px);transition:height .8s cubic-bezier(.5,0,.5,1)}
+.head{position:relative;width:46px;height:18px;margin:0 auto}
+.head:before{content:"";position:absolute;left:50%;top:0;width:22px;height:18px;margin-left:-11px;border-radius:50% 50% 40% 40%;background:radial-gradient(circle at 35% 30%,#ffffff,#a8f0dc 45%,#4fb8a0);border:2px solid #3a8f7c;z-index:2}
+.pl,.pr{position:absolute;top:10px;width:18px;height:34px;border:5px solid #c9cfd8;border-top:0;transition:transform .32s;box-shadow:0 2px 2px rgba(0,0,0,.25)}
+.pl{left:2px;border-right:0;border-radius:0 0 0 20px;transform-origin:100% 0;transform:rotate(22deg)}
+.pr{right:2px;border-left:0;border-radius:0 0 20px 0;transform-origin:0 0;transform:rotate(-22deg)}
+.pc{position:absolute;left:50%;top:14px;width:5px;height:22px;margin-left:-2.5px;border-radius:0 0 3px 3px;background:#c9cfd8}
+.claw.wide .pl{transform:rotate(38deg)}.claw.wide .pr{transform:rotate(-38deg)}
+.claw.closed .pl{transform:rotate(-4deg)}.claw.closed .pr{transform:rotate(4deg)}
+.grab{position:absolute;left:50%;top:24px;transform:translateX(-50%);z-index:1}
 .grab .ball{position:absolute;left:0;top:0;width:100%!important;height:100%;margin:0!important;animation:none!important;transform:none}
-.chute{position:absolute;left:4%;bottom:0;width:20%;height:24%;border-radius:10px 10px 0 0;background:repeating-linear-gradient(45deg,#ffcf4a 0 8px,#2a1d0c 8px 16px);opacity:.9;display:grid;place-items:center;font:900 13px "Noto Sans KR",sans-serif;color:#fff;text-shadow:0 1px 0 #000,0 -1px 0 #000,1px 0 0 #000,-1px 0 0 #000;z-index:2}
+/* prize chute (front-left acrylic box) */
+.chute{position:absolute;left:3%;bottom:0;width:27%;height:30%;z-index:4;border-radius:10px 10px 0 0;border:2px solid rgba(255,255,255,.55);border-bottom:0;
+  background:linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.06));box-shadow:inset 0 0 12px rgba(255,255,255,.25);display:flex;align-items:flex-start;justify-content:center;padding-top:6px;font:900 11px "Noto Sans KR",sans-serif;color:#fff3a8;letter-spacing:.1em}
+.chute.flash{animation:flash .6s 2}
+@keyframes flash{50%{background:rgba(255,243,168,.6)}}
+/* the pet pile */
 .balls{position:absolute;inset:0;z-index:3}
-.ball{position:absolute;width:19%;aspect-ratio:1;margin-left:-9.5%;border-radius:50%;overflow:hidden;background:#fff;border:3px solid var(--bc,#d4af37);box-shadow:0 4px 6px -2px rgba(0,0,0,.35);animation:roll var(--d,2.2s) ease-in-out var(--dl,0s) infinite}
+.ball{position:absolute;width:18%;aspect-ratio:1;margin-left:-9%;border-radius:50%;overflow:hidden;background:#fff;border:3px solid var(--bc,#d4af37);box-shadow:0 5px 8px -3px rgba(0,0,0,.55);rotate:var(--r,0deg);animation:roll var(--d,2.2s) ease-in-out var(--dl,0s) infinite}
 .ball img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
-.ball:after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.85) 0 8%,transparent 26%),linear-gradient(transparent 55%,rgba(0,0,0,.08))}
-@keyframes roll{0%,100%{transform:translateX(-7px) rotate(-16deg)}50%{transform:translateX(7px) rotate(16deg)}}
+.ball:after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.9) 0 8%,transparent 26%),linear-gradient(transparent 55%,rgba(0,0,0,.12))}
+@keyframes roll{0%,100%{transform:translateX(-5px) rotate(-12deg)}50%{transform:translateX(5px) rotate(12deg)}}
 .ball.hop{animation-name:hop}
-@keyframes hop{0%,100%{transform:translate(-5px,0) rotate(-10deg)}40%{transform:translate(2px,-14px) rotate(8deg)}60%{transform:translate(5px,0) rotate(14deg)}}
-.ball.fall{position:absolute!important;animation:fall .5s ease-in forwards!important}
-@keyframes fall{to{transform:translateY(160px) scale(.6);opacity:0}}
-.reveal{position:absolute;inset:0;z-index:7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden;background:radial-gradient(circle,#fff6d8,#ffd27a 70%)}
-.reveal .rays{position:absolute;inset:-50%;background:repeating-conic-gradient(rgba(255,255,255,.55) 0 10deg,transparent 10deg 20deg);animation:spin 9s linear infinite}
+@keyframes hop{0%,100%{transform:translate(-4px,0) rotate(-8deg)}40%{transform:translate(2px,-12px) rotate(8deg)}60%{transform:translate(4px,0) rotate(12deg)}}
+.ball.fall{position:absolute!important;animation:fall .55s ease-in forwards!important}
+@keyframes fall{to{transform:translateY(190px) scale(.7);opacity:0}}
+/* reveal overlay */
+.reveal{position:absolute;inset:0;z-index:7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;overflow:hidden;background:radial-gradient(circle,#fff6d8,#ffc6e3 75%)}
+.reveal .rays{position:absolute;inset:-50%;background:repeating-conic-gradient(rgba(255,255,255,.6) 0 10deg,transparent 10deg 20deg);animation:spin 9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.rv-card{position:relative;width:78%;aspect-ratio:368/286;border-radius:16px;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 20px -8px rgba(120,60,0,.6);background:#f6f0e4;animation:popin .6s cubic-bezier(.2,1.6,.4,1)}
+.rv-card{position:relative;width:82%;aspect-ratio:368/286;border-radius:16px;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 20px -8px rgba(120,40,100,.6);background:#f6f0e4;animation:popin .6s cubic-bezier(.2,1.6,.4,1)}
 .rv-card img{width:100%;height:100%;object-fit:contain;display:block}
 @keyframes popin{from{transform:scale(.2) rotate(-12deg);opacity:0}}
-.rv-t{position:relative;margin:0;padding:3px 12px;border-radius:99px;background:#B33927;color:#fff3d6;font:800 14px "Noto Sans KR",sans-serif;box-shadow:0 3px 0 #7a1f14}
-.rv-again{position:relative;border:0;border-radius:99px;padding:4px 12px;background:#fff;color:#2a1d0c;font-size:12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.rv-t{position:relative;margin:0 10px;padding:4px 14px;border-radius:99px;background:#7a4fd8;color:#fff;font:800 14px "Noto Sans KR",sans-serif;box-shadow:0 3px 0 #4a2a98;text-align:center}
+.rv-again{position:relative;border:0;border-radius:99px;padding:5px 14px;background:#fff;color:#2a1d0c;font-size:12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,.2)}
 .confetti{position:absolute;inset:0;pointer-events:none}
 .confetti i{position:absolute;top:-10%;font-style:normal;font-size:18px;animation:drop 1.8s ease-in forwards}
 @keyframes drop{to{transform:translateY(140%) rotate(540deg);opacity:0}}
 .dv-bubble{position:absolute;left:8px;right:8px;bottom:8px;z-index:8;background:rgba(255,255,255,.95);color:#2a1d0c;border-radius:12px;padding:6px 10px;font-size:12px;font-weight:600;line-height:1.4}
-.dv-ctrl{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding:0 6px}
-.joy{position:relative;width:46px;height:46px}.joy:before{content:"";position:absolute;left:50%;bottom:0;width:40px;height:12px;margin-left:-20px;border-radius:50%;background:#0b241b;box-shadow:inset 0 2px 3px rgba(0,0,0,.5)}
-.joy i{position:absolute;left:50%;bottom:6px;width:6px;height:28px;margin-left:-3px;background:#c9ced6;border-radius:3px;transform-origin:50% 100%;animation:wiggle 4.6s ease-in-out infinite alternate}
-.joy i:before{content:"";position:absolute;left:50%;top:-10px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff9a8a,#B33927)}
-@keyframes wiggle{0%{transform:rotate(-22deg)}100%{transform:rotate(22deg)}}
-.coin{font:800 13px "Noto Sans KR",sans-serif;color:#ffe58a;display:flex;align-items:center;gap:3px;min-width:46px;justify-content:flex-end}.coin i{font-style:normal;font-size:20px;animation:hop 1.6s infinite}
-.dv-btn{width:70px;height:70px;border-radius:50%;border:4px solid #d4af37;background:radial-gradient(circle at 40% 35%,#ff7a6a,#B33927 70%);color:#fff3d6;font:900 15px "Noto Sans KR",sans-serif;letter-spacing:.04em;box-shadow:0 6px 0 #7a1f14,0 10px 18px -6px rgba(0,0,0,.5);transition:transform .1s,box-shadow .1s;animation:pulse 1.4s ease-in-out infinite}
-@keyframes pulse{50%{box-shadow:0 6px 0 #7a1f14,0 0 0 8px rgba(255,214,90,.35)}}
-.dv-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #7a1f14}
+/* neon marquee under the glass */
+.dv-logo{margin:10px 0;padding:7px 0;border-radius:12px;background:#1d1838;text-align:center;font:italic 900 22px "Plus Jakarta Sans",sans-serif;letter-spacing:.04em;color:#fff;text-shadow:0 0 4px #ff8fd0,0 0 10px #d3b8ff,0 0 18px #a9d4ff;position:relative}
+.dv-logo:before,.dv-logo:after{content:"✦";position:absolute;top:50%;transform:translateY(-50%);font-size:16px;color:#fff3a8;animation:blink 1.2s steps(2) infinite}
+.dv-logo:before{left:14px}.dv-logo:after{right:14px;animation-delay:.6s}
+/* control deck */
+.dv-ctrl{display:grid;grid-template-columns:1fr 1.5fr;gap:10px}
+.dv-panel{border-radius:16px;background:linear-gradient(#cfe9ff,#b9d8ff);box-shadow:inset 0 0 0 3px rgba(255,255,255,.7),inset 0 -6px 0 rgba(80,60,160,.15);padding:10px;display:flex;align-items:center;justify-content:space-around;gap:6px}
+.slot{display:flex;flex-direction:column;align-items:center;gap:4px;font:800 10px "Noto Sans KR",sans-serif;color:#2b2350}
+.slot i{display:block;width:10px;height:26px;border-radius:5px;background:#2b2350;box-shadow:inset 0 0 0 3px #f2c14e}
+.credit{min-width:30px;padding:2px 4px;border-radius:6px;background:#2b2350;color:#7ff0dc;font:700 14px monospace;text-align:center;box-shadow:inset 0 0 6px rgba(127,240,220,.4)}
+.door{width:48px;height:40px;border-radius:8px;background:#2b2350;border:3px solid #f2c14e;position:relative;overflow:hidden;display:grid;place-items:center;font-size:9px;color:#fff3a8;letter-spacing:.1em}
+.door.flash{animation:flash .6s 2}
+.joy{position:relative;width:52px;height:56px}
+.joy:before{content:"";position:absolute;left:50%;bottom:2px;width:44px;height:14px;margin-left:-22px;border-radius:50%;background:radial-gradient(#ffe9a8,#f2c14e);box-shadow:0 2px 0 #b8860b}
+.joy i{position:absolute;left:50%;bottom:9px;width:7px;height:32px;margin-left:-3.5px;background:linear-gradient(90deg,#fff,#c9cfd8);border-radius:4px;transform-origin:50% 100%;transition:transform .3s}
+.joy i:before{content:"";position:absolute;left:50%;top:-13px;width:22px;height:22px;margin-left:-11px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd0e6,#e0559a)}
+.joy.l i{transform:rotate(-24deg)}.joy.r i{transform:rotate(24deg)}
+.dv-btn{width:62px;height:62px;border-radius:50%;border:4px solid #fff;background:radial-gradient(circle at 40% 35%,#ff9ad0,#e0559a 70%);color:#fff;font:900 13px "Noto Sans KR",sans-serif;letter-spacing:.04em;box-shadow:0 6px 0 #a8326c,0 10px 16px -6px rgba(0,0,0,.4);transition:transform .1s,box-shadow .1s;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 6px 0 #a8326c,0 0 0 8px rgba(255,154,208,.4)}}
+.dv-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #a8326c}
 .dv-btn:disabled{opacity:.6;animation:none}
 .dv-screen.pop{animation:pop .45s}
 .lsheet{position:relative;margin-top:-28px;background:var(--bg);border-radius:28px 28px 0 0;padding:26px 0 30px;box-shadow:0 -6px 18px -12px rgba(0,0,0,.25)}
@@ -254,7 +281,6 @@ button.pill:hover{border-color:var(--gold);background:#fff}
 .pcard small{color:#6b5a4a;font-size:13px;margin-top:4px}
 [data-theme="dark"] .lhero{background-color:#14112b;background-image:repeating-linear-gradient(0deg,rgba(139,108,240,.22) 0 22px,transparent 22px 44px),repeating-linear-gradient(90deg,rgba(139,108,240,.22) 0 22px,transparent 22px 44px),repeating-linear-gradient(0deg,transparent 0 10px,rgba(230,196,106,.12) 10px 12px,transparent 12px 22px),repeating-linear-gradient(90deg,transparent 0 10px,rgba(230,196,106,.12) 10px 12px,transparent 12px 22px)}
 [data-theme="dark"] .lh-title,[data-theme="dark"] .lh-cap{color:#fff}
-[data-theme="dark"] .device{background:linear-gradient(160deg,#2a2160,#120f26 70%);border-color:#e6c46a;box-shadow:0 0 60px -16px rgba(139,108,240,.7)}
 [data-theme="dark"] .pcard{background:color-mix(in srgb,var(--pc) 16%,#1b1834);color:var(--text)}
 [data-theme="dark"] .pcard small{color:var(--muted)}
 [data-theme="dark"] .pcard .pbadge{background:rgba(255,255,255,.1);color:var(--goldtxt)}
@@ -374,20 +400,21 @@ dialog .close{float:right;border:0;background:var(--bg2);border-radius:50%;width
     <button type="button" class="logintab" id="loginTab"></button>
     <h1 class="lh-title" id="lhTitle"></h1>
     <div class="device" id="device">
-      <div class="dv-top"><span>✦ 윤슬 뽑기 ✦</span><small>YUNSEUL PET CATCHER</small></div>
+      <div class="dv-top"><i>✦</i><span>윤슬 펫 뽑기</span><i>✦</i></div>
       <div class="dv-screen" id="dvScreen">
-        <div class="rail" aria-hidden="true"></div>
-        <div class="claw" id="claw" aria-hidden="true"><i class="rope" id="rope"></i><div class="head" id="clawHead"><b class="pl"></b><b class="pr"></b><span class="grab" id="grab"></span></div></div>
-        <div class="chute" aria-hidden="true">OUT</div>
-        <div class="glass" aria-hidden="true"></div>
+        <div class="spot s1" aria-hidden="true"></div><div class="spot s2" aria-hidden="true"></div>
+        <div class="rail r1" aria-hidden="true"></div><div class="rail r2" aria-hidden="true"></div>
+        <div class="claw" id="claw" aria-hidden="true"><span class="cart"></span><i class="rope" id="rope"></i><div class="head" id="clawHead"><b class="pl"></b><b class="pc"></b><b class="pr"></b><span class="grab" id="grab"></span></div></div>
         <div class="balls" id="balls"></div>
+        <div class="chute" id="chute" aria-hidden="true">PRIZE</div>
+        <div class="glass" aria-hidden="true"></div>
         <div class="reveal" id="reveal" hidden><div class="rays"></div><div class="rv-card"><img id="dvImg" alt=""></div><p class="rv-t" id="rvT"></p><button type="button" class="rv-again" id="rvAgain"></button><div class="confetti" id="confetti"></div></div>
         <span class="dv-bubble" id="dvBubble" hidden></span>
       </div>
+      <div class="dv-logo" aria-hidden="true">Yunseul</div>
       <div class="dv-ctrl">
-        <span class="joy" aria-hidden="true"><i></i></span>
-        <button type="button" class="dv-btn" id="dvBtn"><span>PUSH</span></button>
-        <span class="coin" aria-hidden="true"><i>🪙</i>1</span>
+        <div class="dv-panel"><span class="slot"><i></i>COIN</span><span class="credit" id="credit">01</span><span class="door" id="door" aria-hidden="true">★★★</span></div>
+        <div class="dv-panel"><span class="joy" id="joy" aria-hidden="true"><i></i></span><button type="button" class="dv-btn" id="dvBtn"><span>PUSH</span></button></div>
       </div>
     </div>
     <p class="lh-cap" id="lhCap"></p>
@@ -1150,15 +1177,21 @@ function goProduct(k){
   if(pr.need&&!state.pet){pendingTab=k;openBirth();return}
   goTab(k);$('tabs').scrollIntoView({behavior:'smooth',block:'start'});
 }
-/* claw machine: capsule pile (left%, bottom%) — the chute sits bottom-left */
-const BALLPOS=[[32,3],[49,3],[66,3],[83,3],[40,20],[57,20],[74,20],[89,20],[48,37],[65,37],[82,37]];
+/* claw machine: a heap of pet capsules (left%, bottom%); the prize chute is the acrylic box at bottom-left */
+const BALLPOS=[
+  [38,0],[50,0],[62,0],[74,0],[86,0],[97,1],
+  [44,8],[56,8],[68,8],[80,8],[92,9],
+  [38,16],[50,16],[62,16],[74,16],[86,17],
+  [45,24],[57,24],[69,24],[81,24],
+  [52,32],[64,32],[76,32]];
+const ROPE0=26,CHUTE_X=16.5;
 function renderBalls(p){
-  const target=p?BALLPOS.length-3+hash(p.date)%3:-1;   // a top-row capsule, so the claw can reach it
+  const n=BALLPOS.length,target=p?n-3+hash(p.date)%3:-1;   // one of the top three, so the claw can reach it
   const rnd=()=>[Math.floor(Math.random()*12),Math.floor(Math.random()*5)];
   $('balls').innerHTML=BALLPOS.map(([x,y],i)=>{const [a,e]=i===target?[p.animal,p.petEl]:rnd();
-    return `<span class="ball${i%3===1?' hop':''}${i===target?' target':''}" style="left:${x}%;bottom:${y}%;--bc:${EL[e].c};--d:${(1.8+(i*37%10)/10).toFixed(1)}s;--dl:-${(i*.37).toFixed(2)}s"><img src="${petSrc(a,e)}" alt="" loading="lazy"></span>`}).join('');
+    return `<span class="ball${i%3===1?' hop':''}${i===target?' target':''}" style="left:${x}%;bottom:${y}%;z-index:${i};--r:${(i*47%50)-25}deg;--bc:${EL[e].c};--d:${(1.8+(i*37%10)/10).toFixed(1)}s;--dl:-${(i*.37).toFixed(2)}s"><img src="${petSrc(a,e)}" alt="" loading="lazy"></span>`}).join('');
 }
-function resetClaw(){const c=$('claw');c.classList.remove('closed');c.style.transition='';c.style.left='';c.style.animation='';$('rope').style.height='';$('grab').replaceChildren();$('grab').style.width=$('grab').style.height=''}
+function resetClaw(){const c=$('claw');c.classList.remove('closed','wide');c.style.transition='';c.style.left='';c.style.animation='';$('rope').style.height='';$('grab').replaceChildren();$('grab').style.width=$('grab').style.height='';$('joy').className='joy'}
 function showReveal(p,party){
   const r=$('reveal'),fresh=r.hidden||party;
   $('dvImg').src=humanOn()?humanSrc(p.animal,p.petEl):petSrc(p.animal,p.petEl);$('dvImg').alt=animalLabel(p);
@@ -1167,26 +1200,35 @@ function showReveal(p,party){
   r.hidden=false;
   if(fresh){const c=r.querySelector('.rv-card');c.style.animation='none';void c.offsetWidth;c.style.animation=''}
 }
+function flashEl(id){const e=$(id);e.classList.remove('flash');void e.offsetWidth;e.classList.add('flash')}
+async function moveClaw(to,ms){   // slide the carriage along the rails; the joystick leans the same way
+  const claw=$('claw'),from=parseFloat(claw.style.left);
+  $('joy').className='joy '+(to<from?'l':'r');
+  claw.style.transition=`left ${ms}ms ease-in-out`;claw.style.left=to+'%';
+  await sleep(ms+40);$('joy').className='joy';
+}
 async function playDraw(){
   const p=state.pet;if(!p||drawing)return;
-  drawing=true;$('dvBtn').disabled=true;
+  drawing=true;$('dvBtn').disabled=true;$('credit').textContent='00';
   $('reveal').hidden=true;$('dvBubble').hidden=true;$('confetti').replaceChildren();
   resetClaw();renderBalls(p);ballsKey=p.date+p.petEl;$('lhTitle').textContent=T('lh_q');
   await sleep(80);
   const box=$('dvScreen'),claw=$('claw'),ball=box.querySelector('.ball.target'),br=box.getBoundingClientRect();
-  const cx=(claw.getBoundingClientRect().left+claw.offsetWidth/2-br.left)/br.width*100;
-  claw.style.animation='none';claw.style.left=cx+'%';void claw.offsetWidth;     // freeze where it is
-  claw.style.transition='left .9s ease-in-out';claw.style.left=ball.style.left;await sleep(950);
-  ball.style.animation='none';
+  claw.style.left=((claw.getBoundingClientRect().left+claw.offsetWidth/2-br.left)/br.width*100)+'%';
+  claw.style.animation='none';void claw.offsetWidth;                                       // freeze where it is
+  await moveClaw(parseFloat(ball.style.left),1000);                                         // over our capsule
+  ball.style.animation='none';claw.classList.add('wide');
   const hb=$('clawHead').getBoundingClientRect(),bb=ball.getBoundingClientRect();
-  $('rope').style.height=(22+bb.top-hb.bottom+bb.height*.12)+'px';await sleep(820);   // drop
-  claw.classList.add('closed');await sleep(330);                                       // grab
-  $('grab').style.width=$('grab').style.height=bb.width+'px';ball.style.left='0';ball.style.bottom='auto';$('grab').append(ball);
-  $('rope').style.height='22px';await sleep(820);                                      // lift
-  claw.style.left='14%';await sleep(950);                                               // over the chute
-  claw.classList.remove('closed');ball.classList.add('fall');await sleep(520);         // release
+  $('rope').style.height=(ROPE0+bb.top-hb.bottom+bb.height*.05)+'px';await sleep(880);    // drop
+  claw.classList.remove('wide');claw.classList.add('closed');await sleep(360);             // grab
+  $('grab').style.width=$('grab').style.height=bb.width+'px';
+  ball.style.left='0';ball.style.bottom='auto';$('grab').append(ball);
+  $('rope').style.height=ROPE0+'px';await sleep(880);                                       // lift
+  await moveClaw(CHUTE_X,1100);                                                             // to the prize chute
+  claw.classList.remove('closed');ball.classList.add('fall');flashEl('chute');await sleep(600);   // release
+  flashEl('door');await sleep(350);
   state.drawn=true;save();
-  drawing=false;$('dvBtn').disabled=false;
+  drawing=false;$('dvBtn').disabled=false;$('credit').textContent='01';
   renderLanding(true);
 }
 function renderLanding(party){
