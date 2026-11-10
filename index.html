@@ -188,17 +188,59 @@ button.pill:hover{border-color:var(--gold);background:#fff}
 .dv-top{position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:#B33927;color:#fff3d6;border:3px solid #d4af37;border-radius:18px;padding:6px 18px 4px;white-space:nowrap;box-shadow:0 6px 14px -6px rgba(0,0,0,.4)}
 .dv-top span{display:block;font-family:"Noto Serif KR",serif;font-weight:700;font-size:17px;letter-spacing:.06em}
 .dv-top small{display:block;font-size:9px;letter-spacing:.24em;color:#ffd9a0}
-.dv-deco{position:absolute;font-size:24px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
-.dv-deco.d1{top:22px;left:14px}.dv-deco.d2{top:22px;right:14px}.dv-deco.d3{bottom:22px;left:16px}.dv-deco.d4{bottom:22px;right:16px}
-.dv-screen{position:relative;aspect-ratio:368/286;border-radius:18px;overflow:hidden;border:5px solid #f6e7c4;background:#f6f0e4;box-shadow:inset 0 0 0 2px rgba(0,0,0,.08)}
-.dv-screen img{width:100%;height:100%;object-fit:contain;display:block;transition:opacity .35s}
-.dv-screen.off{background:#4a4a52;background-image:linear-gradient(45deg,#55555d 25%,transparent 25%,transparent 75%,#55555d 75%),linear-gradient(45deg,#55555d 25%,transparent 25%,transparent 75%,#55555d 75%);background-size:36px 36px;background-position:0 0,18px 18px}
-.dv-screen.off img{opacity:.92;mix-blend-mode:normal}
-.dv-screen.off:after{content:"?";position:absolute;top:8px;right:12px;font:700 22px "Noto Sans KR",sans-serif;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
-.dv-bubble{position:absolute;left:8px;right:8px;bottom:8px;background:rgba(255,255,255,.94);color:#2a1d0c;border-radius:12px;padding:6px 10px;font-size:12px;font-weight:600;line-height:1.4}
-.dv-btn{display:block;margin:18px auto 0;width:62px;height:62px;border-radius:50%;border:4px solid #d4af37;background:radial-gradient(circle at 40% 35%,#e66a5a,#B33927 70%);color:#fff3d6;font:700 22px "Noto Serif KR",serif;box-shadow:0 6px 0 #7a1f14,0 10px 18px -6px rgba(0,0,0,.5);transition:transform .1s,box-shadow .1s}
-.dv-screen.pop{animation:pop .45s}
+/* claw machine (flash-game style) */
+.device:before{content:"";position:absolute;inset:8px;border-radius:36px;pointer-events:none;
+  background:radial-gradient(circle,#ffe58a 0 3px,transparent 4px) 0 0/22px 22px;-webkit-mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);padding:6px;animation:bulbs 1.1s steps(2) infinite}
+@keyframes bulbs{50%{background-position:11px 0;filter:hue-rotate(40deg) brightness(1.3)}}
+.dv-screen{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;border:5px solid #f6e7c4;
+  background:linear-gradient(#fff9ee,#fde9d2 62%,#f6d6b4);box-shadow:inset 0 0 0 2px rgba(0,0,0,.08),inset 0 -30px 40px -20px rgba(180,110,60,.35)}
+.glass{position:absolute;inset:0;pointer-events:none;z-index:6;background:linear-gradient(115deg,rgba(255,255,255,.45) 0 8%,transparent 8% 14%,rgba(255,255,255,.25) 14% 17%,transparent 17%)}
+.rail{position:absolute;top:10px;left:6%;right:6%;height:6px;border-radius:3px;background:linear-gradient(#c9ced6,#8a919c);box-shadow:0 2px 3px rgba(0,0,0,.2);z-index:4}
+.claw{position:absolute;top:10px;left:50%;width:64px;margin-left:-32px;z-index:5;animation:roam 4.6s ease-in-out infinite alternate}
+@keyframes roam{0%{left:16%}100%{left:84%}}
+.rope{display:block;width:3px;height:22px;margin:0 auto;background:repeating-linear-gradient(#9aa1ab 0 3px,#cfd4da 3px 6px);transition:height .75s cubic-bezier(.5,0,.5,1)}
+.head{position:relative;width:34px;height:15px;margin:0 auto;border-radius:8px 8px 4px 4px;background:linear-gradient(#ffe08a,#d4a020);border:2px solid #9a6a10}
+.head:before{content:"";position:absolute;left:50%;top:-6px;width:10px;height:8px;margin-left:-5px;border-radius:3px;background:#b9bfc8}
+.pl,.pr{position:absolute;top:10px;width:5px;height:28px;border-radius:3px;background:linear-gradient(90deg,#c9ced6,#7d848f);transform-origin:50% 0;transition:transform .3s}
+.pl{left:1px;transform:rotate(32deg)}.pr{right:1px;transform:rotate(-32deg)}
+.pl:after,.pr:after{content:"";position:absolute;bottom:-2px;width:10px;height:5px;border-radius:3px;background:#7d848f}
+.pl:after{left:0}.pr:after{right:0}
+.claw.closed .pl{transform:rotate(8deg)}.claw.closed .pr{transform:rotate(-8deg)}
+.grab{position:absolute;left:50%;top:22px;transform:translateX(-50%);z-index:-1}
+.grab .ball{position:absolute;left:0;top:0;width:100%!important;height:100%;margin:0!important;animation:none!important;transform:none}
+.chute{position:absolute;left:4%;bottom:0;width:20%;height:24%;border-radius:10px 10px 0 0;background:repeating-linear-gradient(45deg,#ffcf4a 0 8px,#2a1d0c 8px 16px);opacity:.9;display:grid;place-items:center;font:900 13px "Noto Sans KR",sans-serif;color:#fff;text-shadow:0 1px 0 #000,0 -1px 0 #000,1px 0 0 #000,-1px 0 0 #000;z-index:2}
+.balls{position:absolute;inset:0;z-index:3}
+.ball{position:absolute;width:19%;aspect-ratio:1;margin-left:-9.5%;border-radius:50%;overflow:hidden;background:#fff;border:3px solid var(--bc,#d4af37);box-shadow:0 4px 6px -2px rgba(0,0,0,.35);animation:roll var(--d,2.2s) ease-in-out var(--dl,0s) infinite}
+.ball img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+.ball:after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.85) 0 8%,transparent 26%),linear-gradient(transparent 55%,rgba(0,0,0,.08))}
+@keyframes roll{0%,100%{transform:translateX(-7px) rotate(-16deg)}50%{transform:translateX(7px) rotate(16deg)}}
+.ball.hop{animation-name:hop}
+@keyframes hop{0%,100%{transform:translate(-5px,0) rotate(-10deg)}40%{transform:translate(2px,-14px) rotate(8deg)}60%{transform:translate(5px,0) rotate(14deg)}}
+.ball.fall{position:absolute!important;animation:fall .5s ease-in forwards!important}
+@keyframes fall{to{transform:translateY(160px) scale(.6);opacity:0}}
+.reveal{position:absolute;inset:0;z-index:7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden;background:radial-gradient(circle,#fff6d8,#ffd27a 70%)}
+.reveal .rays{position:absolute;inset:-50%;background:repeating-conic-gradient(rgba(255,255,255,.55) 0 10deg,transparent 10deg 20deg);animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rv-card{position:relative;width:78%;aspect-ratio:368/286;border-radius:16px;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 20px -8px rgba(120,60,0,.6);background:#f6f0e4;animation:popin .6s cubic-bezier(.2,1.6,.4,1)}
+.rv-card img{width:100%;height:100%;object-fit:contain;display:block}
+@keyframes popin{from{transform:scale(.2) rotate(-12deg);opacity:0}}
+.rv-t{position:relative;margin:0;padding:3px 12px;border-radius:99px;background:#B33927;color:#fff3d6;font:800 14px "Noto Sans KR",sans-serif;box-shadow:0 3px 0 #7a1f14}
+.rv-again{position:relative;border:0;border-radius:99px;padding:4px 12px;background:#fff;color:#2a1d0c;font-size:12px;font-weight:700;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.confetti{position:absolute;inset:0;pointer-events:none}
+.confetti i{position:absolute;top:-10%;font-style:normal;font-size:18px;animation:drop 1.8s ease-in forwards}
+@keyframes drop{to{transform:translateY(140%) rotate(540deg);opacity:0}}
+.dv-bubble{position:absolute;left:8px;right:8px;bottom:8px;z-index:8;background:rgba(255,255,255,.95);color:#2a1d0c;border-radius:12px;padding:6px 10px;font-size:12px;font-weight:600;line-height:1.4}
+.dv-ctrl{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding:0 6px}
+.joy{position:relative;width:46px;height:46px}.joy:before{content:"";position:absolute;left:50%;bottom:0;width:40px;height:12px;margin-left:-20px;border-radius:50%;background:#0b241b;box-shadow:inset 0 2px 3px rgba(0,0,0,.5)}
+.joy i{position:absolute;left:50%;bottom:6px;width:6px;height:28px;margin-left:-3px;background:#c9ced6;border-radius:3px;transform-origin:50% 100%;animation:wiggle 4.6s ease-in-out infinite alternate}
+.joy i:before{content:"";position:absolute;left:50%;top:-10px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff9a8a,#B33927)}
+@keyframes wiggle{0%{transform:rotate(-22deg)}100%{transform:rotate(22deg)}}
+.coin{font:800 13px "Noto Sans KR",sans-serif;color:#ffe58a;display:flex;align-items:center;gap:3px;min-width:46px;justify-content:flex-end}.coin i{font-style:normal;font-size:20px;animation:hop 1.6s infinite}
+.dv-btn{width:70px;height:70px;border-radius:50%;border:4px solid #d4af37;background:radial-gradient(circle at 40% 35%,#ff7a6a,#B33927 70%);color:#fff3d6;font:900 15px "Noto Sans KR",sans-serif;letter-spacing:.04em;box-shadow:0 6px 0 #7a1f14,0 10px 18px -6px rgba(0,0,0,.5);transition:transform .1s,box-shadow .1s;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 6px 0 #7a1f14,0 0 0 8px rgba(255,214,90,.35)}}
 .dv-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #7a1f14}
+.dv-btn:disabled{opacity:.6;animation:none}
+.dv-screen.pop{animation:pop .45s}
 .lsheet{position:relative;margin-top:-28px;background:var(--bg);border-radius:28px 28px 0 0;padding:26px 0 30px;box-shadow:0 -6px 18px -12px rgba(0,0,0,.25)}
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .pcard{text-align:left;border:0;border-radius:26px;padding:16px 16px 18px;background:var(--pc);color:#2a1d0c;transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column}
@@ -329,13 +371,24 @@ dialog .close{float:right;border:0;background:var(--bg2);border-radius:50%;width
 <!-- LANDING: pet device + product cards -->
 <section class="landing" id="landing">
   <div class="lhero">
-    <button type="button" class="logintab" id="loginTab" onclick="openBirth()"></button>
+    <button type="button" class="logintab" id="loginTab"></button>
     <h1 class="lh-title" id="lhTitle"></h1>
     <div class="device" id="device">
-      <div class="dv-top"><span>✦ 윤슬 수호기 ✦</span><small>YUNSEUL GUARDIAN</small></div>
-      <span class="dv-deco d1">🏮</span><span class="dv-deco d2">🌸</span><span class="dv-deco d3">🪷</span><span class="dv-deco d4">🎐</span>
-      <div class="dv-screen" id="dvScreen"><img id="dvImg" alt=""><span class="dv-bubble" id="dvBubble" hidden></span></div>
-      <button type="button" class="dv-btn" id="dvBtn" aria-label="pet"><span>福</span></button>
+      <div class="dv-top"><span>✦ 윤슬 뽑기 ✦</span><small>YUNSEUL PET CATCHER</small></div>
+      <div class="dv-screen" id="dvScreen">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="claw" id="claw" aria-hidden="true"><i class="rope" id="rope"></i><div class="head" id="clawHead"><b class="pl"></b><b class="pr"></b><span class="grab" id="grab"></span></div></div>
+        <div class="chute" aria-hidden="true">OUT</div>
+        <div class="glass" aria-hidden="true"></div>
+        <div class="balls" id="balls"></div>
+        <div class="reveal" id="reveal" hidden><div class="rays"></div><div class="rv-card"><img id="dvImg" alt=""></div><p class="rv-t" id="rvT"></p><button type="button" class="rv-again" id="rvAgain"></button><div class="confetti" id="confetti"></div></div>
+        <span class="dv-bubble" id="dvBubble" hidden></span>
+      </div>
+      <div class="dv-ctrl">
+        <span class="joy" aria-hidden="true"><i></i></span>
+        <button type="button" class="dv-btn" id="dvBtn"><span>PUSH</span></button>
+        <span class="coin" aria-hidden="true"><i>🪙</i>1</span>
+      </div>
     </div>
     <p class="lh-cap" id="lhCap"></p>
   </div>
@@ -744,7 +797,8 @@ hu_on:'🧑 의인화 보기',hu_off:'🐾 펫 모습 보기',hu_unlock:'✨ {p}
 hu_role:'{g}네 농장의 막내 일꾼',pet_trait:'성격',pet_look:'모습',pet_job:'농장에서',
 preview:'미리보기',
 chips_g:['오늘 뭐 했어?','친구들 소개해줘','내 사주 설명해줘','펫은 잘 지내?','오늘은 조금 지쳤어','용기가 필요해'],
-lh_out:'내 운세를 보려면 로그인하라냥!',lh_in:'오늘의 운세, 골라보라냥!',lh_cap_out:'생년월일로 로그인하면 내 펫이 깨어난다냥',lh_cap_in:'{g}네 농장 · {label} \'{n}\' · Lv.{lv}',
+lh_q:'내 사주에 맞는 펫은 뭘까?',lh_got:'내 사주 펫은 바로 {label}!',lh_cap_out:'생년월일로 로그인하고 PUSH를 누르면 뽑기 시작이다냥',lh_cap_push:'PUSH 버튼을 눌러 내 펫을 뽑아보라냥!',
+rv_t:'{label} \'{n}\' 등장!',rv_again:'🔄 다시 뽑기',lh_cap_in:'{g}네 농장 · {label} \'{n}\' · Lv.{lv}',
 login:'로그인',me:'내 정보',dv_guess:'누가 나올까? 🐾',
 dv_lines:['오늘의 타로 뽑으러 갈래?','농장에 새 식구가 기다리고 있어!','오늘 하루도 수고했어.','별가루 모아서 레벨업하자!','궁합 보러 가볼까?'],
 ai_on:'AI 연결됨',ai_off:'규칙형 데모'
@@ -845,7 +899,8 @@ hu_on:'🧑 Human form',hu_off:'🐾 Pet form',hu_unlock:'✨ {p} can now take h
 hu_role:'the youngest helper on {g}\'s farm',pet_trait:'Personality',pet_look:'Look',pet_job:'On the farm',
 preview:'Preview',
 chips_g:['What did you do today?','Introduce your friends','Explain my Saju','How is my pet?','I\'m a bit tired today','I need courage'],
-lh_out:'Log in to see your fortune, meow!',lh_in:'Pick today\'s fortune, meow!',lh_cap_out:'Log in with your birth date to wake up your pet',lh_cap_in:'{g}\'s farm · {label} "{n}" · Lv.{lv}',
+lh_q:'Which pet matches my Saju?',lh_got:'My Saju pet is the {label}!',lh_cap_out:'Log in with your birth date, then hit PUSH to play',lh_cap_push:'Hit PUSH to catch your pet!',
+rv_t:'{label} "{n}" appears!',rv_again:'🔄 Play again',lh_cap_in:'{g}\'s farm · {label} "{n}" · Lv.{lv}',
 login:'Log in',me:'My info',dv_guess:'Who will it be? 🐾',
 dv_lines:['Want to draw today\'s tarot?','A new farm resident is waiting!','You did great today.','Collect stardust and level up!','Shall we check our chemistry?'],
 ai_on:'AI connected',ai_off:'Rule-based demo'
@@ -1088,36 +1143,73 @@ const PRODUCTS=[
 {k:'chat',img:'img/human/wood-rabbit.jpg',sh:'star',pos:'50% 18%',c:'#d6ecfb',need:1,t:{ko:'가이드와 대화',en:'Chat with guide'},s:{ko:'일상이 있는 가이드가 사주를 읽어줘',en:'A guide with a life reads your Saju'},b:{ko:'NEW',en:'NEW'}},
 {k:'farm',img:'img/pets/wood-sheep.jpg',sh:'flower',c:'#e8e2fd',need:1,t:{ko:'동물농장',en:'Animal Farm'},s:{ko:'레벨업하면 펫이 사람 모습으로!',en:'Level up and your pet takes human form!'},b:{ko:'Lv.UP',en:'Lv.UP'}},
 {k:'shop',img:'img/pets/earth-pig.jpg',sh:'ci',c:'#fde3cc',need:0,t:{ko:'오행 공방',en:'Element Workshop'},s:{ko:'부족한 기운을 채우는 소품',en:'Charms for the energy you lack'},b:{ko:'✦ 추천',en:'✦ Picks'}}];
-let pendingTab=null,dvTimer=null,dvIdx=0;
+let pendingTab=null,pendingDraw=false,drawing=false,ballsKey=null;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 function goProduct(k){
   const pr=PRODUCTS.find(x=>x.k===k);
   if(pr.need&&!state.pet){pendingTab=k;openBirth();return}
   goTab(k);$('tabs').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function renderLanding(){
-  const p=state.pet,has=!!p;
-  $('lhTitle').textContent=has?T('lh_in'):T('lh_out');
+/* claw machine: capsule pile (left%, bottom%) — the chute sits bottom-left */
+const BALLPOS=[[32,3],[49,3],[66,3],[83,3],[40,20],[57,20],[74,20],[89,20],[48,37],[65,37],[82,37]];
+function renderBalls(p){
+  const target=p?BALLPOS.length-3+hash(p.date)%3:-1;   // a top-row capsule, so the claw can reach it
+  const rnd=()=>[Math.floor(Math.random()*12),Math.floor(Math.random()*5)];
+  $('balls').innerHTML=BALLPOS.map(([x,y],i)=>{const [a,e]=i===target?[p.animal,p.petEl]:rnd();
+    return `<span class="ball${i%3===1?' hop':''}${i===target?' target':''}" style="left:${x}%;bottom:${y}%;--bc:${EL[e].c};--d:${(1.8+(i*37%10)/10).toFixed(1)}s;--dl:-${(i*.37).toFixed(2)}s"><img src="${petSrc(a,e)}" alt="" loading="lazy"></span>`}).join('');
+}
+function resetClaw(){const c=$('claw');c.classList.remove('closed');c.style.transition='';c.style.left='';c.style.animation='';$('rope').style.height='';$('grab').replaceChildren();$('grab').style.width=$('grab').style.height=''}
+function showReveal(p,party){
+  const r=$('reveal'),fresh=r.hidden||party;
+  $('dvImg').src=humanOn()?humanSrc(p.animal,p.petEl):petSrc(p.animal,p.petEl);$('dvImg').alt=animalLabel(p);
+  $('rvT').textContent=fmt(T('rv_t'),{label:animalLabel(p),n:p.name});$('rvAgain').textContent=T('rv_again');
+  if(party)$('confetti').innerHTML=Array.from({length:18},(_,i)=>`<i style="left:${i*53%100}%;animation-delay:${(i%6)*.12}s">${['✦','🌸','⭐','🎉','✧','💛'][i%6]}</i>`).join('');
+  r.hidden=false;
+  if(fresh){const c=r.querySelector('.rv-card');c.style.animation='none';void c.offsetWidth;c.style.animation=''}
+}
+async function playDraw(){
+  const p=state.pet;if(!p||drawing)return;
+  drawing=true;$('dvBtn').disabled=true;
+  $('reveal').hidden=true;$('dvBubble').hidden=true;$('confetti').replaceChildren();
+  resetClaw();renderBalls(p);ballsKey=p.date+p.petEl;$('lhTitle').textContent=T('lh_q');
+  await sleep(80);
+  const box=$('dvScreen'),claw=$('claw'),ball=box.querySelector('.ball.target'),br=box.getBoundingClientRect();
+  const cx=(claw.getBoundingClientRect().left+claw.offsetWidth/2-br.left)/br.width*100;
+  claw.style.animation='none';claw.style.left=cx+'%';void claw.offsetWidth;     // freeze where it is
+  claw.style.transition='left .9s ease-in-out';claw.style.left=ball.style.left;await sleep(950);
+  ball.style.animation='none';
+  const hb=$('clawHead').getBoundingClientRect(),bb=ball.getBoundingClientRect();
+  $('rope').style.height=(22+bb.top-hb.bottom+bb.height*.12)+'px';await sleep(820);   // drop
+  claw.classList.add('closed');await sleep(330);                                       // grab
+  $('grab').style.width=$('grab').style.height=bb.width+'px';ball.style.left='0';ball.style.bottom='auto';$('grab').append(ball);
+  $('rope').style.height='22px';await sleep(820);                                      // lift
+  claw.style.left='14%';await sleep(950);                                               // over the chute
+  claw.classList.remove('closed');ball.classList.add('fall');await sleep(520);         // release
+  state.drawn=true;save();
+  drawing=false;$('dvBtn').disabled=false;
+  renderLanding(true);
+}
+function renderLanding(party){
+  const p=state.pet,has=!!p,drawn=has&&state.drawn!==false;
   $('loginTab').textContent=has?T('me'):T('login');
-  $('dvScreen').classList.toggle('off',!has);
-  clearInterval(dvTimer);
-  if(has){
-    $('dvImg').src=humanOn()?humanSrc(p.animal,p.petEl):petSrc(p.animal,p.petEl);$('dvImg').alt=animalLabel(p);
-    $('lhCap').textContent=fmt(T('lh_cap_in'),{g:L(guideOf(p).n),label:animalLabel(p),n:p.name,lv:lvOf()+1});
-    $('dvBubble').hidden=true;
-  }else{   // logged out: cycle preview pets so the device is never empty
-    const show=()=>{const h=hash('dv'+dvIdx++);$('dvImg').src=petSrc(h%12,(h>>>4)%5)};
-    show();dvTimer=setInterval(show,2400);
-    $('lhCap').textContent=T('lh_cap_out');
-    $('dvBubble').textContent=T('dv_guess');$('dvBubble').hidden=false;
+  if(!drawing){
+    $('lhTitle').textContent=drawn?fmt(T('lh_got'),{label:animalLabel(p)}):T('lh_q');
+    $('lhCap').textContent=drawn?fmt(T('lh_cap_in'),{g:L(guideOf(p).n),label:animalLabel(p),n:p.name,lv:lvOf()+1}):has?T('lh_cap_push'):T('lh_cap_out');
+    const key=has?p.date+p.petEl:'none';
+    if(key!==ballsKey||party){resetClaw();renderBalls(has?p:null);ballsKey=key}
+    if(drawn)showReveal(p,!!party);else $('reveal').hidden=true;
   }
   const mine=has?petSrc(p.animal,p.petEl):null;
   $('pgrid').innerHTML=PRODUCTS.map(x=>{const src=x.k==='farm'&&mine?mine:x.img;
     return `<button type="button" class="pcard" style="--pc:${x.c}" data-k="${x.k}"><img class="pimg ${x.sh}" src="${src}" alt="" loading="lazy"${x.pos?` style="object-position:${x.pos}"`:''}><span class="prow"><b>${esc(L(x.t))}</b><span class="pbadge">${esc(L(x.b))}</span></span><small>${esc(L(x.s))}</small></button>`}).join('');
   $('pgrid').querySelectorAll('.pcard').forEach(b=>b.onclick=()=>goProduct(b.dataset.k));
 }
-$('birthDialog').addEventListener('close',()=>{pendingTab=null});
+$('birthDialog').addEventListener('close',()=>{pendingTab=null;pendingDraw=false});
+$('loginTab').onclick=()=>{if(!state.pet)pendingDraw=true;openBirth()};
+$('rvAgain').onclick=()=>playDraw();
 $('dvBtn').onclick=()=>{
-  if(!state.pet)return openBirth();
+  if(!state.pet){pendingDraw=true;return openBirth()}
+  if(state.drawn===false)return playDraw();
   const p=state.pet,l=T('dv_lines'),h=hash(today()+Date.now());
   $('dvBubble').textContent=`${p.name}: ${L(AN[p.animal].sig)} ${l[h%l.length]}`;$('dvBubble').hidden=false;
   const s=$('dvScreen');s.classList.remove('pop');void s.offsetWidth;s.classList.add('pop');
@@ -1325,9 +1417,12 @@ $('birthForm').onsubmit=e=>{
   state.match=null;
   const changed=!prev||prev.guide!==state.pet.guide||prev.animal!==state.pet.animal||prev.petEl!==state.pet.petEl;
   if(!state.chats.length||first||changed){state.chats=[{role:'guide',text:greet()}];state.mem=null}
+  if(first||changed)state.drawn=false;          // a new pet waits in the claw machine
   track('done');save();render();
+  const draw=pendingDraw;
   $('birthDialog').close();
   if(pendingTab){goTab(pendingTab);pendingTab=null;$('tabs').scrollIntoView({behavior:'smooth',block:'start'})}
+  else if(draw){goTab(first?'guide':'chat');scrollTo({top:0,behavior:'smooth'});setTimeout(playDraw,500)}
   else goTab(first?'guide':'chat');
   toast(T('started'));
 };
