@@ -102,6 +102,17 @@ lh_q:'내 사주에 맞는 펫은 뭘까?',lh_got:'내 사주 펫은 바로 {lab
 rv_t:'{label} \'{n}\' 등장!',rv_again:'🔄 다시 뽑기',lh_cap_in:'{g}네 농장 · {label} \'{n}\' · Lv.{lv}',
 login:'로그인',me:'내 정보',dv_guess:'누가 나올까? 🐾',
 dv_lines:['오늘의 타로 뽑으러 갈래?','농장에 새 식구가 기다리고 있어!','오늘 하루도 수고했어.','별가루 모아서 레벨업하자!','궁합 보러 가볼까?'],
+/* --- pixel pet home --- */
+px_kicker:'도트 동물 사주',px_title_out:'내 사주 동물은 누구일까?',px_title_in:'{n}의 작은 집',
+px_form_h:'생년월일시를 알려줘',px_date:'생년월일 (양력)',px_time:'태어난 시간',px_notime:'몰라요',px_name:'동물 이름 (선택)',px_name_ph:'예: 콩이',
+px_go:'내 동물 만나기',px_privacy:'입력한 정보는 이 기기에만 저장돼요.',px_bad:'생년월일을 정확히 입력해 줘.',
+px_egg_say:'누가 태어날까?',px_hello:'안녕! 나는 {n}{ya}.',px_edit:'다시 입력',
+px_plate_sub:'부족한 {el} 기운을 채워주는 친구예요',px_skin_hint:'◀ ▶ 버튼으로 오행 옷을 바꿔볼 수 있어요',px_skin_preview:'{el} 옷 입어보는 중',
+px_yang:'양(陽)',px_yin:'음(陰)',px_born:'{d} {t}생',px_notime_s:'시간 모름',
+px_pokes:['헤헤, 간지러워!','오늘도 같이 있자!','나 불렀어?','뭐 하고 놀까?','기분 좋아!'],
+px_need:'먼저 생년월일을 알려줘!',px_back:'◀ 홈으로',px_soon:'이건 아직 준비 중이야. 곧 내가 직접 알려줄게!',
+px_note:'모든 결과는 재미로 보는 오락용이에요. 중요한 결정은 스스로, 필요하면 전문가와 함께 내려 주세요.',
+px_banners:[['saju','종합 사주','내 사주를 처음부터 끝까지'],['today','오늘의 운세','오늘 내 기운은 어떨까?'],['year','신년 운세','{y}년 {g}년, 달마다 흐름'],['match','궁합','너와 나, 우리 동물은?']],
 ai_on:'AI 연결됨',ai_off:'규칙형 데모'
 },
 en:{
@@ -204,6 +215,17 @@ lh_q:'Which pet matches my Saju?',lh_got:'My Saju pet is the {label}!',lh_cap_ou
 rv_t:'{label} "{n}" appears!',rv_again:'🔄 Play again',lh_cap_in:'{g}\'s farm · {label} "{n}" · Lv.{lv}',
 login:'Log in',me:'My info',dv_guess:'Who will it be? 🐾',
 dv_lines:['Want to draw today\'s tarot?','A new farm resident is waiting!','You did great today.','Collect stardust and level up!','Shall we check our chemistry?'],
+/* --- pixel pet home --- */
+px_kicker:'PIXEL PET SAJU',px_title_out:'Which animal lives in my Saju?',px_title_in:'{n}\'s little home',
+px_form_h:'Tell me when you were born',px_date:'Birth date (solar)',px_time:'Birth time',px_notime:'Not sure',px_name:'Pet name (optional)',px_name_ph:'e.g. Bean',
+px_go:'Meet my animal',px_privacy:'Your info stays on this device.',px_bad:'Please enter a valid birth date.',
+px_egg_say:'Who will hatch?',px_hello:'Hi! I\'m {n}.',px_edit:'Edit',
+px_plate_sub:'A friend who fills your missing {el} energy',px_skin_hint:'Use ◀ ▶ to try other element outfits',px_skin_preview:'Trying on the {el} outfit',
+px_yang:'Yang',px_yin:'Yin',px_born:'Born {d} {t}',px_notime_s:'time unknown',
+px_pokes:['Hehe, that tickles!','Let\'s hang out today!','Did you call me?','What should we play?','I feel great!'],
+px_need:'Tell me your birth date first!',px_back:'◀ Home',px_soon:'This one isn\'t ready yet. I\'ll tell you myself soon!',
+px_note:'All results are for fun only. Make important decisions yourself, with an expert if needed.',
+px_banners:[['saju','Full Saju','Your chart from start to finish'],['today','Today\'s fortune','How is my energy today?'],['year','New Year','{y}, the year of {g}, month by month'],['match','Chemistry','You, me, and our animals']],
 ai_on:'AI connected',ai_off:'Rule-based demo'
 }};
 
@@ -258,3 +280,20 @@ const GOODS=[
 {id:9,el:-1,i:'🔑',p:24,n:{ko:'수호동물 키링 (내 동물)',en:'Guardian Keyring (your animal)'},t:{ko:'내 띠 동물 키링 + 오행 참 1개 선택.',en:'Keyring of your animal + one element charm.'},b:'COMING'},
 {id:10,el:-1,i:'🧸',p:45,n:{ko:'수호동물 인형 + 오행 액세서리',en:'Guardian Plush + Element Accessory'},t:{ko:'공통 동물 인형에 내 오행 액세서리.',en:'Shared animal plush with your element accessory.'},b:'COMING'}];
 
+
+/* ================= PIXEL PET ================= */
+/* sprite file keys in zodiac order (rat..pig) and native sizes in dots, from tools/slice-sprites.ps1 → assets/animals/animals.json */
+const PX_KEYS=['rat','ox','tiger','rabbit','dragon','snake','horse','sheep','monkey','rooster','dog','pig'];
+const PX_SIZE=[[41,40],[44,41],[43,39],[36,43],[44,41],[37,36],[49,38],[42,37],[42,36],[41,39],[43,34],[45,34]];
+/* element skins, in EL order (wood fire earth metal water): device gradient, screen, accent, ornament, screen effect */
+const PX_SKIN=[
+{k:'wood', ch:{ko:'목',en:'Wood'}, a:'#e6f6d6',b:'#b6df98',scr:'#f7fbec',ac:'#4f9e37',fx:'leaf',
+ orn:'<path d="M6 16c10-10 18 6 28-2s16-10 26 0 18 8 28-2 16-6 26 2" fill="none" stroke="#4f9e37" stroke-width="2.4" stroke-linecap="round"/><path d="M30 10c3-6 9-6 9-6s-1 7-9 6zM62 8c-3-5-9-5-9-5s1 6 9 5zM88 13c3-6 9-5 9-5s-2 7-9 5z" fill="#7cc35a" stroke="#4f9e37" stroke-width="1"/>'},
+{k:'fire', ch:{ko:'화',en:'Fire'}, a:'#fde3e0',b:'#f4aea6',scr:'#fff3f1',ac:'#e0504a',fx:'ember',
+ orn:'<path d="M14 15c12 0 22-2 34-1M72 14c12-1 22 1 34 1" fill="none" stroke="#e0504a" stroke-width="2.2" stroke-linecap="round"/><path d="M60 21c-9 0-12-7-7-12 1 4 3 5 5 4-2-5 1-10 6-12-1 5 3 7 4 10 1 5-2 10-8 10z" fill="#f47b5c" stroke="#d1443c" stroke-width="1.4"/>'},
+{k:'earth',ch:{ko:'토',en:'Earth'},a:'#fdf1c8',b:'#f1cf72',scr:'#fffaea',ac:'#cf9325',fx:'sand',
+ orn:'<path d="M6 19c12-12 24-12 34-4 10-12 26-14 38-2 8-6 20-6 30 4" fill="#f6d98a" stroke="#cf9325" stroke-width="2.2" stroke-linejoin="round"/>'},
+{k:'metal',ch:{ko:'금',en:'Metal'},a:'#fdfaf3',b:'#e8dfcc',scr:'#fffdf8',ac:'#a98a5e',fx:'spark',
+ orn:'<path d="M22 13h28M70 13h28" stroke="#a98a5e" stroke-width="1.6" stroke-dasharray="1 4" stroke-linecap="round"/><path d="M60 3l2.4 7.6L70 13l-7.6 2.4L60 23l-2.4-7.6L50 13l7.6-2.4z" fill="#fff6d8" stroke="#a98a5e" stroke-width="1.4"/><circle cx="16" cy="13" r="2.2" fill="#a98a5e"/><path d="M104 9l1 3 3 1-3 1-1 3-1-3-3-1 3-1z" fill="#a98a5e"/>'},
+{k:'water',ch:{ko:'수',en:'Water'},a:'#dfeefc',b:'#9ec9f1',scr:'#f1f8ff',ac:'#2f7fd0',fx:'bubble',
+ orn:'<path d="M8 17c6-8 14-8 18-2-6 0-6-6 0-6M30 15c10-9 20-9 30 0 10-9 20-9 30 0 6-6 14-6 20 0" fill="none" stroke="#2f7fd0" stroke-width="2.4" stroke-linecap="round"/><path d="M40 13c4-4 10-4 12 0M76 13c4-4 10-4 12 0" fill="none" stroke="#8cc0f0" stroke-width="2" stroke-linecap="round"/>'}];

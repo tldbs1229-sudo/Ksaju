@@ -368,3 +368,109 @@ dialog .close{float:right;border:0;background:var(--bg2);border-radius:50%;width
 }
 @media(max-width:480px){.pill{padding:4px 8px;font-size:12px}.brand .bn{font-size:20px}.brand .bs{display:none}header .wrap{gap:6px}.pillars{gap:5px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* =====================================================================
+   PIXEL PET — tamagotchi home (mobile first)
+   ===================================================================== */
+.px{--ol:#2b2a20;--ink:#2d2a1f;--pmuted:#6f6a58;--card:#fffdf7;
+  --sk-a:#e6f6d6;--sk-b:#b6df98;--scr:#f7fbec;--ac:#4f9e37;
+  max-width:460px;margin:0 auto;padding:18px 16px 28px;color:var(--ink);font-family:"Noto Sans KR","Plus Jakarta Sans",system-ui,sans-serif}
+body:has(#px:not([hidden])){background:#fbf5ea;background-image:none}
+.px [hidden]{display:none!important}
+.px-kicker{text-align:center;font-size:11px;font-weight:800;letter-spacing:.22em;color:var(--ac);margin:4px 0 2px}
+.px-title{text-align:center;font:800 clamp(20px,6vw,26px)/1.3 "Noto Sans KR",sans-serif;margin:0;color:var(--ink);letter-spacing:-.02em}
+.px-h{font:800 17px "Noto Sans KR",sans-serif;margin:0 0 10px;color:var(--ink)}
+/* device */
+.tama{position:relative;width:min(300px,84vw);aspect-ratio:30/33;margin:18px auto 6px;
+  border:3px solid var(--ol);border-radius:50% 50% 47% 47%/58% 58% 42% 42%;
+  background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.95) 0 5%,transparent 14%),linear-gradient(165deg,var(--sk-a),var(--sk-b));
+  box-shadow:inset -12px -16px 0 rgba(0,0,0,.05),inset 10px 10px 0 rgba(255,255,255,.45),0 16px 0 -8px rgba(60,50,20,.16)}
+.tama-orn{position:absolute;top:8.5%;left:50%;width:56%;height:12%;transform:translateX(-50%)}
+.tama-screen{position:absolute;left:14%;right:14%;top:24%;height:44%;border:3px solid var(--ol);border-radius:14px;background:var(--scr);overflow:hidden;
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.7)}
+.tama-btns{position:absolute;left:0;right:0;bottom:12.5%;display:flex;justify-content:center;align-items:center;gap:18px}
+.tb{width:40px;height:40px;border:0;background:none;padding:0;display:grid;place-items:center;cursor:pointer}
+.tb svg{width:20px;height:24px;fill:color-mix(in srgb,var(--ac) 55%,white);stroke:var(--ac);stroke-width:1.4;stroke-linejoin:round}
+.tb.ok svg{width:30px;height:30px}
+.tb:active{transform:translateY(2px)}
+.tb:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:50%}
+/* screen props: pixel grass tufts + element particles */
+.tuft{position:absolute;bottom:9%;width:21px;height:12px;background:var(--ac);
+  -webkit-mask:var(--tuft) center/contain no-repeat;mask:var(--tuft) center/contain no-repeat;
+  --tuft:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 4' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1v4H0zM1 3h1v1H1zM2 2h1v2H2zM3 1h1v3H3zM4 3h1v1H4zM5 0h1v3H5zM6 2h1v2H6z'/%3E%3C/svg%3E")}
+.tuft.l{left:9%}.tuft.r{right:9%}
+.scr-fx{position:absolute;inset:0;pointer-events:none}
+.fx{position:absolute;width:4px;height:4px;opacity:0}
+.fx-leaf{animation:fxFall 6s steps(12) infinite;background:#7cc35a;box-shadow:4px 0 #4f9e37}
+.fx-ember{animation:fxRise 3.6s steps(9) infinite;background:#f47b5c;box-shadow:0 -4px #ffc46b}
+.fx-sand{animation:fxDrift 5s steps(10) infinite;background:#e2b24a}
+.fx-spark{animation:fxTwinkle 2.4s steps(2) infinite;background:#e6c46a;box-shadow:4px 0 #e6c46a,-4px 0 #e6c46a,0 4px #e6c46a,0 -4px #e6c46a}
+.fx-bubble{animation:fxRise 4.4s steps(11) infinite;box-shadow:inset 0 0 0 1px #2f7fd0;width:6px;height:6px}
+@keyframes fxFall{0%{opacity:1;transform:translate(0,-10px)}100%{opacity:0;transform:translate(14px,120px)}}
+@keyframes fxRise{0%{opacity:.9;transform:translate(0,0)}100%{opacity:0;transform:translate(6px,-90px)}}
+@keyframes fxDrift{0%{opacity:.8;transform:translate(0,0)}100%{opacity:0;transform:translate(70px,-6px)}}
+@keyframes fxTwinkle{0%,100%{opacity:0}50%{opacity:1}}
+/* the animal: walk (left/right) > flip (facing) > hop > breathe > two frames (open / blink), all in steps for a dotty feel */
+.pet-walk{position:absolute;left:50%;bottom:9%;transform:translateX(-50%);animation:petWalk 16s steps(32) infinite}
+.pet-flip{animation:petFlip 16s steps(1) infinite}
+.pet-jump{animation:petHop 7s steps(1) infinite}
+.pet-jump.poke{animation:petPoke .7s steps(1)}
+.pet-breathe{position:relative;animation:petBreathe 1.2s steps(1) infinite;transform-origin:50% 100%}
+.pet-breathe img{display:block;image-rendering:pixelated;image-rendering:crisp-edges}
+.pet-breathe .pet-blink{position:absolute;left:0;top:0;opacity:0;animation:petBlink 4.6s steps(1) infinite}
+@keyframes petWalk{0%,8%{transform:translateX(-50%)}30%,42%{transform:translateX(-12%)}50%,58%{transform:translateX(-50%)}80%,92%{transform:translateX(-88%)}100%{transform:translateX(-50%)}}
+@keyframes petFlip{0%{transform:none}42%{transform:scaleX(-1)}50%{transform:none}92%{transform:scaleX(-1)}}
+@keyframes petHop{0%,61%,66%,100%{transform:none}62%{transform:translateY(-12%)}63%{transform:translateY(-20%)}64%{transform:translateY(-10%)}65%{transform:scale(1.06,.94)}}
+@keyframes petPoke{0%{transform:translateY(-18%)}25%{transform:translateY(-26%)}50%{transform:translateY(-8%)}75%{transform:scale(1.08,.92)}100%{transform:none}}
+@keyframes petBreathe{0%{transform:none}50%{transform:scale(1.03,.96)}}
+@keyframes petBlink{0%,93%{opacity:0}94%,97%{opacity:1}98%{opacity:0}}
+/* egg before hatching */
+.px-egg{position:absolute;left:50%;bottom:12%;width:66px;height:78px;margin-left:-33px;animation:eggWobble 2.2s steps(1) infinite;transform-origin:50% 100%;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 13' shape-rendering='crispEdges'%3E%3Cpath fill='%23fff8e6' d='M4 1h3v1H4zM3 2h5v2H3zM2 4h7v3H2zM1 7h9v4H1zM2 11h7v1H2z'/%3E%3Cpath fill='%23f3c9b4' d='M6 4h2v1H6zM2 8h2v1H2zM7 9h2v1H7zM4 10h1v1H4z'/%3E%3Cpath fill='%232b2a20' d='M4 0h3v1H4zM3 1h1v1H3zM7 1h1v1H7zM2 2h1v2H2zM8 2h1v2H8zM1 4h1v3H1zM9 4h1v3H9zM0 7h1v4H0zM10 7h1v4H10zM1 11h1v1H1zM9 11h1v1H9zM2 12h7v1H2z'/%3E%3C/svg%3E") center/contain no-repeat}
+@keyframes eggWobble{0%,40%,100%{transform:none}45%{transform:rotate(-8deg)}55%{transform:rotate(8deg)}65%{transform:rotate(-5deg)}75%{transform:none}}
+.px-say{position:absolute;left:50%;top:5%;transform:translateX(-50%);max-width:88%;background:#fff;border:2px solid var(--ol);border-radius:10px;padding:3px 9px;font-size:12px;font-weight:700;color:#2d2a1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:2}
+/* plate under the device */
+.px-plate{text-align:center;margin:4px 0 16px}
+.px-chip{display:inline-block;min-width:74px;padding:4px 16px;border:2.5px solid var(--ol);border-radius:99px;background:var(--card);font-weight:800;font-size:16px}
+.px-plate .who{display:block;margin-top:8px;font-weight:800;font-size:16px}
+.px-plate small{display:block;color:var(--pmuted);font-size:12.5px;margin-top:2px}
+/* cards, form */
+.px-card{background:var(--card);border:3px solid var(--ol);border-radius:16px;padding:16px;margin:0 0 16px;box-shadow:0 4px 0 rgba(43,42,32,.12)}
+.px-card label{display:block;font-size:12.5px;font-weight:700;color:var(--pmuted);margin:10px 0 4px}
+.px-card input[type=date],.px-card input[type=time],.px-card input:not([type]){width:100%;border:2px solid var(--ol);border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink);font-size:16px}
+.px-row{display:flex;gap:10px;align-items:center}.px-row input{flex:1;min-width:0}
+.px-check{display:flex!important;align-items:center;gap:6px;margin:0!important;white-space:nowrap;font-weight:600!important}.px-check input{width:18px;height:18px;accent-color:var(--ac)}
+.px-btn{display:block;width:100%;margin-top:16px;border:3px solid var(--ol);border-radius:14px;background:color-mix(in srgb,var(--ac) 30%,white);color:#2d2a1f;font:800 17px "Noto Sans KR",sans-serif;padding:12px;box-shadow:0 4px 0 var(--ol);cursor:pointer}
+.px-btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ol)}
+.px-small{font-size:12px;color:var(--pmuted);margin:10px 0 0;text-align:center}
+.px-me{display:flex;align-items:center;gap:12px}.px-me div{flex:1;font-size:13px;color:var(--pmuted)}.px-me b{display:block;font-size:16px;color:var(--ink)}
+.px-ghost{border:2px solid var(--ol);border-radius:10px;background:none;padding:6px 12px;font-weight:700;color:var(--ink);cursor:pointer}
+/* four banners */
+.px-banners{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.px-ban{text-align:left;border:3px solid var(--ol);border-radius:16px;padding:14px 12px;background:var(--bc);color:var(--ink);box-shadow:0 4px 0 var(--ol);cursor:pointer;min-height:112px;display:flex;flex-direction:column;gap:4px;font-family:inherit}
+.px-ban:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ol)}
+.px-ban i{font-style:normal;font-size:26px;line-height:1}
+.px-ban b{font-size:16px;font-weight:800;margin-top:4px}
+.px-ban span{font-size:12px;color:var(--pmuted);line-height:1.4}
+.px-note{font-size:11.5px;color:var(--pmuted);text-align:center;line-height:1.6;margin:8px 4px 0}
+/* banner screen */
+.px-back{border:0;background:none;font-weight:800;color:var(--ac);padding:4px 0;margin-bottom:10px;cursor:pointer;font-family:inherit}
+.px-talk{display:flex;flex-direction:column;align-items:center;gap:14px}
+.px-mini img{display:block;image-rendering:pixelated}
+.px-bubble{position:relative;margin:0;border:2.5px solid var(--ol);border-radius:14px;padding:12px 14px;background:#fff;color:#2d2a1f;font-size:15px;line-height:1.6;text-align:center}
+.px-bubble:before{content:"";position:absolute;top:-9px;left:50%;margin-left:-8px;border:8px solid transparent;border-top:0;border-bottom-color:var(--ol)}
+.px-bubble:after{content:"";position:absolute;top:-5px;left:50%;margin-left:-6px;border:6px solid transparent;border-top:0;border-bottom-color:#fff}
+/* dark mode: page and cards go dark, the toy itself keeps its pastel colors */
+[data-theme="dark"] body:has(#px:not([hidden])){background:#15131f}
+[data-theme="dark"] .px{--ink:#f3efe3;--pmuted:#b8b2a0;--card:#211e2e}
+[data-theme="dark"] .px-card,[data-theme="dark"] .px-chip,[data-theme="dark"] .px-ban{border-color:#4a4560}
+[data-theme="dark"] .px-card input{background:#2a2639!important;color:#f3efe3!important;border-color:#4a4560!important}
+[data-theme="dark"] .px-ban{background:color-mix(in srgb,var(--bc) 22%,#211e2e);box-shadow:0 4px 0 #0c0b12}
+[data-theme="dark"] .px-ghost{border-color:#4a4560}
+/* footer under the pixel home: same paper tone instead of the old jade band */
+body:has(#px:not([hidden])) .foot{background:#efe6d3;color:#5d5747;margin-top:0;border-top:3px solid #2b2a20}
+body:has(#px:not([hidden])) .foot .brand .bn,body:has(#px:not([hidden])) .foot .brand{color:#2d2a1f}
+body:has(#px:not([hidden])) .foot small,body:has(#px:not([hidden])) .foot .notice{color:#6f6a58}
+body:has(#px:not([hidden])) .foot .textbtn{color:#2d2a1f}
+[data-theme="dark"] body:has(#px:not([hidden])) .foot{background:#1b1827;color:#b8b2a0;border-top-color:#4a4560}
+[data-theme="dark"] body:has(#px:not([hidden])) .foot .brand,[data-theme="dark"] body:has(#px:not([hidden])) .foot .textbtn{color:#f3efe3}

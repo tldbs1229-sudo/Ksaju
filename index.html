@@ -16,12 +16,64 @@
   <div class="wrap">
     <a href="#" class="brand"><span class="bn">윤슬당</span><span class="bs">YUNSEULDANG · 오행 수호동물</span></a>
     <span style="flex:1"></span>
-    <span class="pill" id="wallet"></span>
+    <span class="pill" id="wallet" hidden></span>
     <button class="pill" id="themeBtn" aria-label="theme">🌙</button>
     <button class="pill" id="langBtn">EN</button>
-    <button class="pill" id="cartBtn">🛒 <b id="cartN">0</b></button>
+    <button class="pill" id="cartBtn" hidden>🛒 <b id="cartN">0</b></button>
   </div>
 </header>
+
+<!-- PIXEL PET: home (tamagotchi device + birth form + four banners) and the banner screens -->
+<div class="px" id="px">
+  <section class="px-home" id="pxHome">
+    <p class="px-kicker" data-i18n="px_kicker"></p>
+    <h1 class="px-title" id="pxTitle"></h1>
+    <div class="tama" id="tama">
+      <svg class="tama-orn" id="tamaOrn" viewBox="0 0 120 24" aria-hidden="true"></svg>
+      <div class="tama-screen" id="tamaScreen">
+        <div class="scr-fx" id="scrFx" aria-hidden="true"></div>
+        <span class="tuft l" aria-hidden="true"></span><span class="tuft r" aria-hidden="true"></span>
+        <div class="pet-walk" id="petWalk"><div class="pet-flip"><div class="pet-jump" id="petJump"><div class="pet-breathe">
+          <img id="petA" alt=""><img id="petB" class="pet-blink" alt="" aria-hidden="true">
+        </div></div></div></div>
+        <div class="px-egg" id="pxEgg" hidden aria-hidden="true"></div>
+        <span class="px-say" id="pxSay" hidden></span>
+      </div>
+      <div class="tama-btns">
+        <button type="button" class="tb" id="tbPrev"><svg viewBox="0 0 10 12"><path d="M8 1L2 6l6 5z"/></svg></button>
+        <button type="button" class="tb ok" id="tbOk"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.5"/></svg></button>
+        <button type="button" class="tb" id="tbNext"><svg viewBox="0 0 10 12"><path d="M2 1l6 5-6 5z"/></svg></button>
+      </div>
+    </div>
+    <div class="px-plate" id="pxPlate"></div>
+
+    <form class="px-card px-form" id="pxForm">
+      <h2 class="px-h" data-i18n="px_form_h"></h2>
+      <label for="pxDate" data-i18n="px_date"></label>
+      <input type="date" id="pxDate" min="1900-01-01" required>
+      <label for="pxTime" data-i18n="px_time"></label>
+      <div class="px-row"><input type="time" id="pxTime"><label class="px-check"><input type="checkbox" id="pxNoTime"><span data-i18n="px_notime"></span></label></div>
+      <label for="pxName" data-i18n="px_name"></label>
+      <input id="pxName" maxlength="12" data-i18n-ph="px_name_ph">
+      <button class="px-btn" data-i18n="px_go"></button>
+      <p class="px-small" data-i18n="px_privacy"></p>
+    </form>
+    <div class="px-card px-me" id="pxMe" hidden></div>
+
+    <div class="px-banners" id="pxBanners"></div>
+    <p class="px-note" data-i18n="px_note"></p>
+  </section>
+
+  <section class="px-view" id="pxView" hidden>
+    <button type="button" class="px-back" id="pxBack" data-i18n="px_back"></button>
+    <h2 class="px-h" id="pxViewTitle"></h2>
+    <div class="px-card px-talk"><div class="px-mini" id="pxViewPet"></div><p class="px-bubble" id="pxViewSay"></p></div>
+    <p class="px-note" data-i18n="px_note"></p>
+  </section>
+</div>
+
+<!-- previous site, hidden while the pixel-pet redesign is built; cleaned up in step 6 -->
+<div id="legacy" hidden>
 
 <!-- LANDING: pet device + product cards -->
 <section class="landing" id="landing">
@@ -274,6 +326,7 @@
   </div>
  </div>
 </main>
+</div>
 
 <footer class="foot"><div class="wrap"><div class="row">
   <div><div class="brand" style="font-size:20px">☾ 윤슬당</div><small>YUNSEULDANG · BY SIYUN &amp; YEAJIN</small></div>

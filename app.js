@@ -152,7 +152,7 @@ function applyLang(){
   document.querySelectorAll('[data-i18n-html]').forEach(e=>e.innerHTML=T(e.dataset.i18nHtml));
   document.querySelectorAll('[data-i18n-ph]').forEach(e=>e.placeholder=T(e.dataset.i18nPh));
   $('langBtn').textContent=lang==='ko'?'EN':'한국어';
-  fillSelects();render();
+  fillSelects();render();pxRender();
 }
 function fillSelects(){
   const keep=id=>$(id).value;
@@ -720,6 +720,97 @@ function resetAll(){
   state=fresh();try{localStorage.removeItem(LS)}catch(e){}
   render();toast(T('reset_done'));
 }
+
+/* ================= PIXEL PET HOME =================
+   The animal comes from saju(): zodiac animal by birth year (Ipchun), element = weakest element (s.theme),
+   yin/yang of the birth year. The element is only the device/screen skin; ◀ ▶ lets the user try others. */
+const PXLS='ksaju-pixel-v1';
+let px={me:null,skin:null},pxEditing=false,pxSayT;
+try{const v=JSON.parse(localStorage.getItem(PXLS));if(v&&typeof v==='object')px={...px,...v}}catch(e){}
+if(!px.me&&state.pet&&state.pet.date)px.me={date:state.pet.date,time:state.pet.time||'',name:state.pet.name||''};   // carry over the birth info from the previous site
+function pxSave(){try{localStorage.setItem(PXLS,JSON.stringify(px))}catch(e){}}
+function pxInfo(){
+  if(!px.me||!validDate(px.me.date))return null;
+  const s=saju(px.me.date,px.me.time||null);
+  const el=Number.isInteger(px.skin)?px.skin:s.theme;
+  return {s,animal:s.animal,lack:s.theme,el,yang:s.yang,name:px.me.name||L(AN[s.animal])};
+}
+const pxLabel=(el,a)=>lang==='ko'?`${EL[el].ko} ${AN[a].ko}`:`${EL[el].en} ${AN[a].en}`;
+function pxYear(){const d=new Date(),y=d.getFullYear();return d>=new Date(y,1,4)?y+1:y}   // "new year" = the next Ipchun year
+const pxGanji=y=>{const st=STEM[((y-4)%10+10)%10],br=BR[((y-4)%12+12)%12];return lang==='ko'?st[0]+br[0]:st[1]+br[1]};
+function pxSprite(a,scale){const [w,h]=PX_SIZE[a];return `<img src="assets/animals/${PX_KEYS[a]}.png" width="${w*scale}" height="${h*scale}" alt="${esc(L(AN[a]))}">`}
+const PX_BAN=[['saju','☯','#e3f2c6'],['today','☀️','#fdf0c4'],['year','🎍','#fde4ec'],['match','💞','#d9ecfb']];
+
+function pxRender(){
+  const info=pxInfo(),el=info?info.el:(Number.isInteger(px.skin)?px.skin:0),sk=PX_SKIN[el],root=$('px');
+  root.style.setProperty('--sk-a',sk.a);root.style.setProperty('--sk-b',sk.b);root.style.setProperty('--scr',sk.scr);root.style.setProperty('--ac',sk.ac);
+  $('tamaOrn').innerHTML=sk.orn;
+  $('scrFx').innerHTML=[12,30,48,66,84,22].map((x,i)=>`<span class="fx fx-${sk.fx}" style="left:${x}%;top:${sk.fx==='leaf'?4:sk.fx==='spark'?14+i*11:sk.fx==='sand'?60+i%3*8:78}%;animation-delay:-${(i*.9).toFixed(1)}s"></span>`).join('');
+  $('pxTitle').textContent=info?fmt(T('px_title_in'),{n:info.name}):T('px_title_out');
+  $('pxEgg').hidden=!!info;$('petWalk').hidden=!info;
+  if(info){
+    const a=info.animal,[w,h]=PX_SIZE[a],sh=$('tamaScreen').clientHeight||130;
+    const sc=Math.max(2,Math.min(4,Math.floor(sh*.66/h)));
+    for(const [id,f] of [['petA',''],['petB','-blink']]){const im=$(id);im.src=`assets/animals/${PX_KEYS[a]}${f}.png`;im.width=w*sc;im.height=h*sc}
+    $('petA').alt=pxLabel(el,a);
+    if(!pxSayT)$('pxSay').hidden=true;
+  }else{$('pxSay').textContent=T('px_egg_say');$('pxSay').hidden=false}
+  $('pxPlate').innerHTML=`<span class="px-chip">${sk.ch[lang]}</span>`+(info
+    ?`<span class="who">${esc(info.name)} · ${esc(pxLabel(el,info.animal))} · ${info.yang?T('px_yang'):T('px_yin')}</span><small>${esc(fmt(T(el===info.lack?'px_plate_sub':'px_skin_preview'),{el:EL[el===info.lack?info.lack:el][lang==='ko'?'ko':'en']}))}</small>`
+    :'')+`<small>${T('px_skin_hint')}</small>`;
+  $('pxForm').hidden=!!info&&!pxEditing;$('pxMe').hidden=!info||pxEditing;
+  if(info)$('pxMe').innerHTML=`<div><b>${esc(info.name)}</b>${esc(fmt(T('px_born'),{d:px.me.date,t:px.me.time||T('px_notime_s')}))}</div><button type="button" class="px-ghost" id="pxEdit">${T('px_edit')}</button>`;
+  const pe=$('pxEdit');if(pe)pe.onclick=()=>{pxEditing=true;$('pxDate').value=px.me.date;$('pxTime').value=px.me.time||'';$('pxNoTime').checked=!px.me.time;$('pxTime').disabled=!px.me.time;$('pxName').value=px.me.name||'';pxRender();$('pxDate').focus()};
+  const y=pxYear(),bt=T('px_banners');
+  $('pxBanners').innerHTML=PX_BAN.map(([k,ic,c],i)=>`<button type="button" class="px-ban" style="--bc:${c}" data-k="${k}"><i aria-hidden="true">${ic}</i><b>${bt[i][1]}</b><span>${esc(fmt(bt[i][2],{y,g:pxGanji(y)}))}</span></button>`).join('');
+  $('pxBanners').querySelectorAll('.px-ban').forEach(b=>b.onclick=()=>pxOpen(b.dataset.k));
+  pxRoute();
+}
+function pxSay(text,ms){const s=$('pxSay');s.textContent=text;s.hidden=false;clearTimeout(pxSayT);pxSayT=setTimeout(()=>{pxSayT=null;if(pxInfo())s.hidden=true},ms||2600)}
+function pxPoke(){const j=$('petJump');j.classList.remove('poke');void j.offsetWidth;j.classList.add('poke')}
+function pxOpen(k){
+  if(!pxInfo()){toast(T('px_need'));$('pxForm').scrollIntoView({behavior:'smooth',block:'center'});$('pxDate').focus({preventScroll:true});return}
+  location.hash=k;
+}
+function pxRoute(){   // #saju / #today / #year / #match open a banner screen; no hash = home
+  const k=location.hash.slice(1),i=PX_BAN.findIndex(b=>b[0]===k),info=pxInfo(),open=i>=0&&!!info;
+  $('pxHome').hidden=open;$('pxView').hidden=!open;
+  if(!open)return;
+  const bt=T('px_banners')[i];
+  $('pxViewTitle').textContent=`${PX_BAN[i][1]} ${bt[1]}`;
+  $('pxViewPet').innerHTML=pxSprite(info.animal,3);
+  $('pxViewSay').textContent=T('px_soon');
+  scrollTo(0,0);
+}
+addEventListener('hashchange',pxRoute);
+$('pxBack').onclick=()=>{if(history.length>1&&location.hash)history.back();else location.hash=''};
+$('tbPrev').onclick=()=>pxSkin(-1);$('tbNext').onclick=()=>pxSkin(1);
+$('tbPrev').setAttribute('aria-label','◀');$('tbNext').setAttribute('aria-label','▶');$('tbOk').setAttribute('aria-label','●');
+function pxSkin(d){
+  const info=pxInfo(),cur=info?info.el:(Number.isInteger(px.skin)?px.skin:0),next=(cur+d+5)%5;
+  px.skin=info&&next===info.lack?null:next;pxSave();pxRender();
+  if(info)pxPoke();
+}
+$('tbOk').onclick=()=>{
+  const info=pxInfo();
+  if(!info){$('pxEgg').style.animationDuration='.5s';setTimeout(()=>$('pxEgg').style.animationDuration='',1200);$('pxForm').scrollIntoView({behavior:'smooth',block:'center'});return}
+  const l=T('px_pokes');pxSay(l[hash(String(Date.now()))%l.length]);pxPoke();
+};
+$('pxNoTime').onchange=()=>{$('pxTime').disabled=$('pxNoTime').checked;if($('pxNoTime').checked)$('pxTime').value=''};
+$('pxTime').oninput=()=>{if($('pxTime').value)$('pxNoTime').checked=false};
+$('pxForm').onsubmit=e=>{
+  e.preventDefault();
+  const date=$('pxDate').value;if(!validDate(date))return toast(T('px_bad'));
+  const changed=!px.me||px.me.date!==date;
+  px.me={date,time:$('pxNoTime').checked?'':$('pxTime').value,name:$('pxName').value.trim().slice(0,12)};
+  if(changed)px.skin=null;            // a new birth date starts from its own (weakest) element
+  pxEditing=false;pxSave();pxRender();
+  $('tama').scrollIntoView({behavior:'smooth',block:'center'});
+  const nm=pxInfo().name,c=nm.charCodeAt(nm.length-1),batchim=c>=0xAC00&&c<=0xD7A3&&(c-0xAC00)%28>0;   // 용이야 vs 토끼야
+  pxSay(fmt(T('px_hello'),{n:nm,ya:batchim?'이야':'야'}),3200);pxPoke();
+};
+$('pxDate').max=today();
+let pxRT;addEventListener('resize',()=>{clearTimeout(pxRT);pxRT=setTimeout(pxRender,150)});
 
 /* ================= INIT ================= */
 for(const id of['birthday','partnerDate'])$(id).max=today();
