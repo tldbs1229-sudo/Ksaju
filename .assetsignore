@@ -2,3 +2,7 @@
 CLAUDE.md
 .git
 assets/ref
+tools
+wrangler.jsonc
+*.mp4
+*.htm
