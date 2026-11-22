@@ -5,5 +5,7 @@
   "compatibility_date": "2025-09-01",
   "assets": {
     "directory": "."
-  }
+  },
+  // branch builds run `wrangler preview`, which needs this block (it may stay empty)
+  "previews": {}
 }
